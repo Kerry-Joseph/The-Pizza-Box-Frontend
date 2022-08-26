@@ -14,6 +14,13 @@ $box-green: #6AB547;
 $box-black: #242423;
 $box-white: #E5E5E5;
 
+@mixin border {
+  border: red solid 1px;
+}
+
+
+
+
 // NAV ------------
 .nav {
   border-bottom: $box-black 1px solid;
@@ -26,7 +33,7 @@ $box-white: #E5E5E5;
 
 .nav__link {
   text-decoration: none;
-  margin: 0 1rem 0 1rem;
+  margin: 0 .5rem 0 .5rem;
   color: $box-black;
   transition: .3s;
   font-size: 1rem;
@@ -40,6 +47,96 @@ $box-white: #E5E5E5;
 .nav__link--home {
   position: absolute;
   left: 0
+}
+
+
+
+
+
+// FOOTER -----------
+.footer {
+  background-color: $box-black;
+  color: $box-green;
+}
+
+
+// footer info links
+.footer__info {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+@media (min-width: 430px) {
+  .footer__info {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0 2rem 0;
+  }
+}
+
+
+// footer socials and mobile app links
+.footer__socials {
+  border-top: $box-white solid 1px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer__socials--apps {
+  margin: 2rem;
+  // @include border()
+}
+
+.footer__socials--stores {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 2rem;
+  // @include border()
+}
+
+@media (min-width: 430px) {
+  .footer__socials {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer__socials--apps {
+    display: flex;
+    justify-content: space-around;
+
+    h1 {
+      margin: 40px;
+    }
+  }
+  .footer__socials--stores {
+    flex-direction: row;
+
+    h1 {
+      margin: 40px;
+    }
+  }
+}
+
+
+// footer copyright info
+.footer__copyright {
+  padding-bottom: 20px;
+}
+
+.footer__copyright--tos {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+    p {
+      cursor: pointer;
+      margin: 0 1rem 0 1rem;
+    }
+}
+
+.footer__copyright--rights {
+  text-align: center;
 }
 
 
