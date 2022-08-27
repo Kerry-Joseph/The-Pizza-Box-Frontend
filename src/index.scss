@@ -31,30 +31,33 @@ $desktop: 990px; // desktop or larger
 
 // NAV ------------
 .nav {
-  border-bottom: $box-black 1px solid;
-  display: flex;
-  height: 5rem;
-  justify-content: flex-end;
   position: relative;
-  align-items: center;
+  height: 5rem;
   background-color: $box-white;
+  border-bottom: $box-black 1px solid;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
   // @include border()
 }
 
 .nav__link {
-  text-decoration: none;
-  margin: 0 5px;
-  color: $box-black;
-  transition: .3s;
-  font-size: 1rem;
   height: 4rem;
+  margin: 0 5px;
+  font-size: 1rem;
+  color: $box-black;
+  text-decoration: none;
+
   display: flex;
   align-items: center;
+  transition: .3s;
 }
 
 .nav__link:hover {
     border-bottom: $box-green .5rem solid;
-  }
+}
 
 .nav__link--home {
   position: absolute;
@@ -103,21 +106,23 @@ $desktop: 990px; // desktop or larger
 // footer info links
 .footer__info {
   text-align: center;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 
-   p {
+  p {
     cursor: pointer;
     font-size: 1.05rem;
-   }
+  }
 }
 
 @media (min-width: 520px) {
   .footer__info {
+    padding: 2rem 0 2rem 0;
+
     display: flex;
     justify-content: space-around;
-    padding: 2rem 0 2rem 0;
   }
 }
 
@@ -125,6 +130,7 @@ $desktop: 990px; // desktop or larger
 // footer socials and mobile app links
 .footer__socials {
   border-top: $box-white solid 1px;
+
   display: flex;
   justify-content: space-around;
 }
@@ -133,25 +139,28 @@ $desktop: 990px; // desktop or larger
 // social links
 .footer__socials--apps {
   margin: 2rem;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: fit-content(100px) fit-content(100px);
   gap: 3rem;
   justify-content: center;
   align-content: center;
-  align-items: center;
+
   // @include border() 
 }
 
 @mixin socialSprite($position: 0 0) {
   width: 4.8rem;
   height: 4.8rem;
+  border-radius: 7px;
+  cursor: pointer;
+
   background: url(../public/footer/social-icons.png) no-repeat;
   background-position: $position;
   background-size: 225% 200%;
   background-color: $box-green;
-  border-radius: 7px;
-  cursor: pointer;
+
   // @include border()
 }
     #facebook {
@@ -193,29 +202,30 @@ $desktop: 990px; // desktop or larger
 
 // store links
 .footer__socials--stores {
+  margin: 2rem;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 2rem;
+
   // @include border()
 }
 
 @mixin storeSprite($position: 0 0) {
   width: 18rem;
   height: 6.5rem;
+  cursor: pointer;
+
   background: url(../public/footer/mobile-store-logos.png) no-repeat;
   background-position: $position;
   background-size: 100% 200%;
-  cursor: pointer;
 }
     #app-store {
-      // @include border();
       @include storeSprite(
         $position: 0 100%, 
       )
     }
     #play-store {
-      // @include border();
       @include storeSprite()
     }
 
@@ -237,9 +247,9 @@ $desktop: 990px; // desktop or larger
 }
 
 .footer__copyright--tos {
-  justify-content: center;
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   p {
     cursor: pointer;
