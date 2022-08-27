@@ -32,7 +32,9 @@ const Footer = () => {
                     <img id="facebook" src="transparent.png" alt="facebook logo" width="1" height="1" />
                     <img id="twitter" src="transparent.png" alt="twitter logo" width="1" height="1" />
                     <img id="instagram" src="transparent.png" alt="instagram logo" width="1" height="1" />
-                    <img id="linkedIn" src="transparent.png" alt="linkedIn logo" width="1" height="1" />
+                    <a href="https://www.linkedin.com/in/kerry-kemar-joseph/" target="_blank">
+                        <img id="linkedIn" src="transparent.png" alt="linkedIn logo" width="1" height="1" />
+                    </a>
                 </div>
                 <div className="footer__socials--stores">
                     <img id="app-store" src="transparent.png" alt="app store logo" width="1" height="1" />
