@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="footer__info">
                 <div className="footer__info--company">
                     <h1>Company</h1>
@@ -32,7 +32,7 @@ const Footer = () => {
                     <img id="facebook" src="transparent.png" alt="facebook logo" width="1" height="1" />
                     <img id="twitter" src="transparent.png" alt="twitter logo" width="1" height="1" />
                     <img id="instagram" src="transparent.png" alt="instagram logo" width="1" height="1" />
-                    <a href="https://www.linkedin.com/in/kerry-kemar-joseph/" target="_blank">
+                    <a href="https://www.linkedin.com/in/kerry-kemar-joseph/" target="_blank" rel="noreferrer">
                         <img id="linkedIn" src="transparent.png" alt="linkedIn logo" width="1" height="1" />
                     </a>
                 </div>
@@ -55,7 +55,7 @@ const Footer = () => {
                         logos and related marks are trademarks licensed to Pizza Box Enterprises, Inc.</p>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 
