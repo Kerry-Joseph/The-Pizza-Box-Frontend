@@ -29,14 +29,14 @@ const Footer = () => {
             </div>
             <div className="footer__socials">
                 <div className="footer__socials--apps">
-                    <h1>F</h1>
-                    <h1>T</h1>
-                    <h1>I</h1>
-                    <h1>L</h1>
+                    <img id="facebook" src="transparent.png" alt="facebook logo" width="1" height="1" />
+                    <img id="twitter" src="transparent.png" alt="twitter logo" width="1" height="1" />
+                    <img id="instagram" src="transparent.png" alt="instagram logo" width="1" height="1" />
+                    <img id="linkedIn" src="transparent.png" alt="linkedIn logo" width="1" height="1" />
                 </div>
                 <div className="footer__socials--stores">
-                    <h1>App Store</h1>
-                    <h1>Google Play</h1>
+                    <img id="app-store" src="transparent.png" alt="app store logo" width="1" height="1" />
+                    <img id="play-store" src="transparent.png" alt="play store logo" width="1" height="1" />
                 </div>
             </div>
             <div className="footer__copyright">
