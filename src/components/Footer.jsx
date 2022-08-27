@@ -4,27 +4,27 @@ const Footer = () => {
             <div className="footer__info">
                 <div className="footer__info--company">
                     <h1>Company</h1>
-                    <p>info</p>
-                    <p>info</p>
-                    <p>info</p>
+                    <p>Our History</p>
+                    <p>Fundraising</p>
+                    <p>The Box Blog</p>
                 </div>
                 <div className="footer__info--careers">
                     <h1>Careers</h1>
-                    <p>info</p>
-                    <p>info</p>
-                    <p>info</p>
+                    <p>Store Jobs</p>
+                    <p>Corporate Jobs</p>
+                    <p>Distribution Jobs</p>
                 </div>
                 <div className="footer__info--food">
                     <h1>Food</h1>
-                    <p>info</p>
-                    <p>info</p>
-                    <p>info</p>
+                    <p>Nutrition</p>
+                    <p>Gluten-free</p>
+                    <p>Food Quality</p>
                 </div>
                 <div className="footer__info--connect">
                     <h1>Connect</h1>
-                    <p>info</p>
-                    <p>info</p>
-                    <p>info</p>
+                    <p>Contact Us</p>
+                    <p>Merch Shop</p>
+                    <p>FAQs</p>
                 </div>
             </div>
             <div className="footer__socials">
