@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 // signature colors
@@ -32,30 +33,62 @@ $desktop: 990px; // desktop or larger
 .nav {
   border-bottom: $box-black 1px solid;
   display: flex;
-  height: 50px;
+  height: 5rem;
   justify-content: flex-end;
   position: relative;
+  align-items: center;
   background-color: $box-white;
+  // @include border()
 }
 
 .nav__link {
   text-decoration: none;
-  margin: 0 .5rem 0 .5rem;
+  margin: 0 5px;
   color: $box-black;
   transition: .3s;
   font-size: 1rem;
   height: 4rem;
+  display: flex;
+  align-items: center;
 }
 
 .nav__link:hover {
-    border-bottom: $box-green 5px solid;
+    border-bottom: $box-green .5rem solid;
   }
 
 .nav__link--home {
   position: absolute;
-  left: 0
+  left: 0;
 }
 
+#box-logo {
+  width: 5rem
+}
+
+@media (min-width: $tablet) {
+  .nav {
+    height: 6rem;
+  }
+  .nav__link {
+    margin: 0 20px;
+    font-size: 1.2rem;
+  }
+  #box-logo {
+    width: 6rem
+  }    
+}
+
+@media (min-width: $desktop) {
+  .nav {
+    height: 7rem;
+  }
+  .nav__link {
+    margin: 0 35px;
+  }
+  #box-logo {
+    width: 7rem
+  }     
+}
 
 
 
@@ -73,6 +106,11 @@ $desktop: 990px; // desktop or larger
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+
+   p {
+    cursor: pointer;
+    font-size: 1.05rem;
+   }
 }
 
 @media (min-width: 520px) {
@@ -113,6 +151,7 @@ $desktop: 990px; // desktop or larger
   background-size: 225% 200%;
   background-color: $box-green;
   border-radius: 7px;
+  cursor: pointer;
   // @include border()
 }
     #facebook {
@@ -167,6 +206,7 @@ $desktop: 990px; // desktop or larger
   background: url(../public/footer/mobile-store-logos.png) no-repeat;
   background-position: $position;
   background-size: 100% 200%;
+  cursor: pointer;
 }
     #app-store {
       // @include border();
@@ -185,7 +225,7 @@ $desktop: 990px; // desktop or larger
     flex-wrap: wrap;
 
     img {
-      margin: 0 40px;
+      margin: 0 40px 0 0;
     }
   }
 }

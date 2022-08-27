@@ -4,11 +4,11 @@ const Nav = () => {
     return (
         <div className="nav">
             <Link className="nav__link nav__link--home" to="/">
-                <h1>The Pizza Box</h1>
+                <img id="box-logo" src="nav/box.png" alt="Pizza Box Logo" />
             </Link>
 
             <Link className="nav__link nav__link--presets" to="/presets">
-                <h1>Pizza Presets</h1>
+                <h1>Presets</h1>
             </Link>
 
             <Link className="nav__link nav__link--menu" to="/menu">
