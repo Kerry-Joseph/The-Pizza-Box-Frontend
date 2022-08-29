@@ -1,7 +1,11 @@
+import PresetsList from "./page-components/PresetList"
 
-const Presets = () => {
+
+const Presets = ({ presets }) => {
     return (
-        <h1>preset page</h1>
+        <div className="presets">
+            <PresetsList presets={presets}/>
+        </div>
     )
 }
 
