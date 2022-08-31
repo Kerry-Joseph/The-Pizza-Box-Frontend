@@ -39,20 +39,72 @@ const PizzaPage = ( {presets} ) => {
                 return {
                     ...prev, 
                     toppings : { ...prev.toppings,
-                        [key]: prev.toppings[key]++ }
+                        [key]: prev.toppings[key]++ },
+                    price: prev.price + .50
                 } 
             } else {
                 return {
                     ...prev, 
                     toppings : { ...prev.toppings,
-                        [key]: 1}
+                        [key]: 1},
+                    price: prev.price + .50
                 }  
             }
         })
     }
-    
+    const subtractToppings = (key) => {
+        setPizza(prev => {
+            if (prev.toppings[key] >= 1){
+                return {
+                    ...prev,
+                    toppings : { ...prev.toppings,
+                        [key]: prev.toppings[key]-- },
+                    price: prev.price - .5
+                } 
+            } else {
+                return {
+                    ...prev,
+                    toppings : { ...prev.toppings,
+                        [key]: 0 },
+                    price: prev.price - .5
+                }
+            }
+        })
+    }
 
-    const log = () => console.log(pizza)
+    const disableTopping = (key) => {
+        if (pizza.toppings[key] === undefined || 0)
+        return true
+        if (pizza.toppings[key] === 0)
+        return true
+    }
+
+    const onOne = (key) => {
+        if (pizza.toppings[key] >= 1)
+        return {color: "red"}
+    }
+
+    const toppingCount = (key) => {
+        if (pizza.toppings[key] > 1)
+        return pizza.toppings[key]
+    }
+
+    const Topping = ({topping}) => {
+        return (
+            <div>
+                <p style={onOne(topping)}>{topping}</p>
+                <button onClick={() => addToppings(topping)} >+</button>
+                <button 
+                    onClick={() => subtractToppings(topping)} 
+                    disabled={disableTopping(topping)}>
+                        -
+                </button>
+                {toppingCount(topping)}
+            </div>
+        )
+    }
+
+    const log = () => console.log(pizza.toppings.pineapple)
    
     
     return (
@@ -73,7 +125,21 @@ const PizzaPage = ( {presets} ) => {
             </div>
             <div>
                 <strong>toppings</strong>
-                <div><p>pepperoni</p><button onClick={() => addToppings("pepperoni")}>+</button></div>
+                <Topping topping={"pepperoni"} />
+                <Topping topping={"sausage"} />
+                <Topping topping={"salami"} />
+                <Topping topping={"beef"} />
+                <Topping topping={"ham"} />
+                <Topping topping={"spinach"} />
+                <Topping topping={"pineapple"} />
+                <Topping topping={"anchovies"} />
+                <Topping topping={"olives"} />
+                <Topping topping={"onions"} />
+                <Topping topping={"mushrooms"} />
+                <Topping topping={"greenPeppers"} />
+            </div>
+            <div>
+                <strong>${pizza.price}</strong>
             </div>
 
         </div>
