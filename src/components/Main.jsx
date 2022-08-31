@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import Home from "../pages/Home"
 import Presets from "../pages/Presets"
+import PizzaPage from "../pages/CreatePizza"
 
 const Main = () => {
     const [meals, setMeals] = useState(null)
@@ -46,6 +47,11 @@ const Main = () => {
                         presets={presets}
                     />
                 }/>
+                <Route path="/create-pizza" element={
+                    <PizzaPage 
+                        presets={presets}
+                    />
+                } />
             </Routes>
         </main>
     )
