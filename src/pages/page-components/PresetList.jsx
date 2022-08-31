@@ -19,7 +19,7 @@ const PresetsList = ({ presets }) => {
                 }
             })
             const joinItem = splitItem.map(item => item.join(''))
-            console.log(splitItem)
+            // console.log(splitItem)
             return joinItem.toString()
             
         }
@@ -28,13 +28,12 @@ const PresetsList = ({ presets }) => {
             const string = Object.keys(crust).toString()
             return string.charAt(0).toUpperCase() + string.toString().slice(1)
         }
-
         
         
         return presets.map((preset) => (
           <div className="preset-list__listItem" key={preset._id}>
             <div className="preset-list__listItem--name">{preset.name}</div>
-            <div className="preseet-list__listItem--toppings"><p>Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)}</p></div>
+            <div className="preseet-list__listItem--toppings"><p>Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)} | Price: ${preset.price.toString()}</p></div>
           </div>
         ))
     }
