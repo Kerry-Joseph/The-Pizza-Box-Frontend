@@ -140,7 +140,7 @@ body {
 
 
 // social links
-.footer__socials--apps {
+.footer__socials-apps {
   margin: 2rem;
 
   display: grid;
@@ -166,33 +166,33 @@ body {
 
   // @include border()
 }
-    #facebook {
-      @include socialSprite(
-        $position: -0.5% -1%
-      )
-    }
-    #twitter {
-      @include socialSprite(
-        $position: 95% 100%
-      )
-    }
-    #instagram {
-      @include socialSprite(
-        $position: -0.5% 102%
-      )
-    }
-    #linkedIn {
-      @include socialSprite(
-        $position: 95% -2.5%
-      )
-    }
+#facebook {
+  @include socialSprite(
+    $position: -0.5% -1%
+  )
+}
+#twitter {
+  @include socialSprite(
+    $position: 95% 100%
+  )
+}
+#instagram {
+  @include socialSprite(
+    $position: -0.5% 102%
+  )
+}
+#linkedIn {
+  @include socialSprite(
+    $position: 95% -2.5%
+  )
+}
 
 @media (min-width: $tablet) {
   .footer__socials {
     justify-content: space-between;
     align-items: center;
   }
-  .footer__socials--apps {
+  .footer__socials-apps {
     display: flex;
     justify-content: space-around;
 
@@ -204,7 +204,7 @@ body {
 
 
 // store links
-.footer__socials--stores {
+.footer__socials-stores {
   margin: 2rem;
 
   display: flex;
@@ -223,17 +223,17 @@ body {
   background-position: $position;
   background-size: 100% 200%;
 }
-    #app-store {
-      @include storeSprite(
-        $position: 0 100%, 
-      )
-    }
-    #play-store {
-      @include storeSprite()
-    }
+#app-store {
+  @include storeSprite(
+    $position: 0 100%, 
+  )
+}
+#play-store {
+  @include storeSprite()
+}
 
 @media (min-width: $tablet) {
-  .footer__socials--stores {
+  .footer__socials-stores {
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -249,7 +249,7 @@ body {
   padding-bottom: 20px;
 }
 
-.footer__copyright--tos {
+.footer__copyright-tos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -260,7 +260,7 @@ body {
   }
 }
 
-.footer__copyright--rights {
+.footer__copyright-rights {
   text-align: center;
 }
 
