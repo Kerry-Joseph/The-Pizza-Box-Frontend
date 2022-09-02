@@ -166,36 +166,43 @@ const PizzaPage = ( {createPreset} ) => {
     // topping component
     const Topping = ({topping}) => {
         return (
-            <div>
+            <div className={`pizza-page__toppings--${topping}`}>
                 <p 
+                    className="pizza-page__name"
                     style={onOne(topping)}>
                         {topping}
                 </p>
 
                 <button 
+                    className="pizza-page__button pizza-page__button--add"
                     onClick={() => addToppings(topping)}>
                         + 
                 </button>
 
                 <button 
+                    className="pizza-page__button pizza-page__button--subtract"
                     onClick={() => {subtractToppings(topping)}} 
                     disabled={disableTopping(topping)}>
                         -
                 </button>
-
-                {toppingCount(topping)}
+                <div 
+                    className="pizza-page__count">
+                    {toppingCount(topping)}
+                </div>
             </div>
         )
     }
     // size component
     const Size = ({ size }) => {
-        return (
-            <div>
+        return (    
+            <div className={`pizza-page__size--${size}`}>
                 <p 
+                    className="pizza-page__name"
                     style={activeSize(size)}>
                         {size}
                 </p>    
-                <button 
+                <button
+                    className="pizza-page__button" 
                     onClick={() => {addSize(size); sizePrice(size)}}>
                         +
                 </button>
@@ -205,12 +212,14 @@ const PizzaPage = ( {createPreset} ) => {
     // crust component
     const Crust = ({ crust }) => {
         return (
-            <div>
+            <div className={`pizza-page__crust--${crust}`}>
                 <p 
+                    className="pizza-page__name"
                     style={activeCrust(crust)}>
                         {crust}
                 </p>    
                 <button 
+                    className="pizza-page__button" 
                     onClick={() => { addCrust(crust); crustPrice(crust) }}
                     disabled={disableCrust(crust)}>
                         +
@@ -218,6 +227,7 @@ const PizzaPage = ( {createPreset} ) => {
             </div>
         )
     }
+
 
     // PRESET NAME FORM ----
     const handleChange = e => {
@@ -230,8 +240,7 @@ const PizzaPage = ( {createPreset} ) => {
         e.preventDefault()
         createPreset(pizza)
     }
-
-            // const log = () => console.log(pizza)
+     
    
     // EFFECT ----
     useEffect(() => {
@@ -239,26 +248,39 @@ const PizzaPage = ( {createPreset} ) => {
     }, [toppingCost, sizeCost, crustCost])
 
 
+    // const log = () => console.log(pizza)
+
+
     // HTML ----
     return (
         <div className="pizza-page">
             {/* <div><p>log</p><button id="log" onClick={log}>+</button></div> */}
-            <div>
-                <strong>size</strong>
+            <div className="pizza-page__size">
+                <p className="pizza-page__title pizza-page__title--size">
+                    Size
+                </p>
                 <Size size={"small"} />
                 <Size size={"medium"} />
                 <Size size={"large"} />
-                {sizeCost}
+                <p className="pizza-page__cost pizza-page__cost--size">
+                    ${sizeCost}
+                </p>
             </div>
-            <div>
-                <strong>crust</strong>
+            <div className="pizza-page__crust">
+                <p className="pizza-page__title pizza-page__title--crust">
+                    Crust
+                </p>
                 <Crust crust={"thin"} />
                 <Crust crust={"regular"} />
                 <Crust crust={"stuffed"} />
-                {crustCost}
+                <p className="pizza-page__cost pizza-page__cost--crust">
+                    ${crustCost}
+                </p>
             </div>
-            <div>
-                <strong>toppings</strong>
+            <div className="pizza-page__toppings">
+                <p className="pizza-page__title pizza-page__title--toppings">
+                    Toppings
+                </p>
                 <Topping topping={"pepperoni"} />
                 <Topping topping={"sausage"} />
                 <Topping topping={"salami"}/>
@@ -271,13 +293,14 @@ const PizzaPage = ( {createPreset} ) => {
                 <Topping topping={"onions"} />
                 <Topping topping={"mushrooms"} />
                 <Topping topping={"greenPeppers"} />
-                {toppingCost}
+                <p className="pizza-page__cost pizza-page__cost--toppings">
+                    ${toppingCost}
+                </p>
             </div>
-            <div>
-                <strong>${pizza.price}</strong>
+            <div className="pizza-page__total-cost">
+                ${pizza.price}
             </div>
-            <div>
-                <button>Set As Preset</button>
+            <div className="pizza-page__preset-form">
                 <form onSubmit={handleSubmit}>
                     <input name="name" value={pizza.name} type="text" onChange={handleChange} />
                     <input type="submit" value="Create Pizza Preset" />

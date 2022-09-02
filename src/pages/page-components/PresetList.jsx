@@ -36,9 +36,16 @@ const PresetsList = ({ presets }) => {
         
         
         return presets.map((preset) => (
-          <div className="preset-list__listItem" key={preset._id}>
-            <div className="preset-list__listItem--name">{preset.name}</div>
-            <div className="preseet-list__listItem--toppings"><p>Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)} | Price: ${preset.price.toString()}</p></div>
+          <div className={`preset-list__list-item preset-list__list-item--${preset.name.replace(' ', '-')}`} key={preset._id}>
+            <div className={`preset-list__list-item-name`}>
+                {preset.name}
+            </div>
+            <div className={`preseet-list__list-item-toppings`}>
+                Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)}
+            </div>
+            <div className={`preset-list__list-item-price`}>
+                ${preset.price.toString()}
+            </div>
           </div>
         ))
     }
@@ -50,9 +57,9 @@ const PresetsList = ({ presets }) => {
 
     // HTML ----
     return (
-        <div className="presets-list">
         // return loading until data is fetched
-        { presets ? loaded() : loading()} 
+        <div className="presets-list">
+            { presets ? loaded() : loading() } 
         </div>
     )
 }
