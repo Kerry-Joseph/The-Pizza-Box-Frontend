@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const PizzaPage = ( {presets} ) => {
 
-    
+    const [toppingCost, setToppingCost] = useState(0)
+    const [sizeCost, setSizeCost] = useState(0)
+    const [crustCost, setCrustCost] = useState(0)
 
     const [pizza, setPizza] = useState({
         name: {},
@@ -12,42 +14,91 @@ const PizzaPage = ( {presets} ) => {
         price: 0
     })
     
+    const totalPrice = () => {
+        setPizza(prev => {
+            return {
+                ...prev,
+                price: toppingCost + sizeCost + crustCost
+            }
+        })
+    }
 
     const addSize = (key) => {
         setPizza((prev) => {
             return {
                 ...prev, 
-                size : { ...prev.size,
-                    [key]: true}
+                size : {[key]: true}
                 
             }
         })
     }
+
+    const sizePrice = (sizeType) => {
+        if(sizeType === "small"){
+            setSizeCost(.99)
+        } else if(sizeType === "medium"){
+            setSizeCost(1.99)
+        } else if(sizeType === "large"){
+            setSizeCost(2.99)
+        }
+    }
+
     const addCrust = (key) => {
         setPizza((prev) => {
             return {
                 ...prev, 
-                crust : { ...prev.crust,
-                    [key]: true}
-                
+                crust : {[key]: true}
             }
         })
+        
     }
+    const crustPrice = (crustType) => {
+        if(crustType === "thin"){
+            setCrustCost(.25)
+        } else if(crustType === "regular"){
+            setCrustCost(.50)
+        } else if(crustType === "stuffed"){
+            setCrustCost(.75)
+        }
+    }
+
+    
+    const disableCrust = (key) => {
+        if(pizza.crust[key] === true)
+        return true
+    } 
+
+    const activeSize = (key) => {
+        if(pizza.size[key] === true) {
+            return {color: "red"}
+        } else {
+            return {color: "blue"}
+        }
+    }
+    const activeCrust = (key) => {
+        if(pizza.crust[key] === true) {
+            return {color: "red"}
+        } else {
+            return {color: "blue"}
+        }
+    }
+
+
     const addToppings = (key) => {
         setPizza((prev) => {
             if (prev.toppings[key] >= 1){
+                setToppingCost(prev => prev + .5)
                 return {
                     ...prev, 
                     toppings : { ...prev.toppings,
                         [key]: prev.toppings[key]++ },
-                    price: prev.price + .50
                 } 
             } else {
+                setToppingCost(prev => prev + .5)
                 return {
                     ...prev, 
                     toppings : { ...prev.toppings,
                         [key]: 1},
-                    price: prev.price + .50
                 }  
             }
         })
@@ -55,23 +106,22 @@ const PizzaPage = ( {presets} ) => {
     const subtractToppings = (key) => {
         setPizza(prev => {
             if (prev.toppings[key] >= 1){
+                setToppingCost(prev => prev - .5)
                 return {
                     ...prev,
                     toppings : { ...prev.toppings,
                         [key]: prev.toppings[key]-- },
-                    price: prev.price - .5
                 } 
             } else {
+                setToppingCost(prev => prev - .5)
                 return {
                     ...prev,
                     toppings : { ...prev.toppings,
                         [key]: 0 },
-                    price: prev.price - .5
                 }
             }
         })
     }
-
     const disableTopping = (key) => {
         if (pizza.toppings[key] === undefined || 0)
         return true
@@ -92,42 +142,84 @@ const PizzaPage = ( {presets} ) => {
     const Topping = ({topping}) => {
         return (
             <div>
-                <p style={onOne(topping)}>{topping}</p>
-                <button onClick={() => addToppings(topping)} >+</button>
+                <p 
+                    style={onOne(topping)}>
+                        {topping}
+                </p>
+
+                <button 
+                    onClick={() => addToppings(topping)}>
+                        + 
+                </button>
+
                 <button 
                     onClick={() => subtractToppings(topping)} 
                     disabled={disableTopping(topping)}>
                         -
                 </button>
+
                 {toppingCount(topping)}
             </div>
         )
     }
+    const Size = ({ size }) => {
+        return (
+            <div>
+                <p 
+                    style={activeSize(size)}>
+                        {size}
+                </p>    
+                <button 
+                    onClick={() => {addSize(size); sizePrice(size)}}>
+                        +
+                </button>
+            </div>
+        )
+    }
+    const Crust = ({ crust }) => {
+        return (
+            <div>
+                <p 
+                    style={activeCrust(crust)}>
+                        {crust}
+                </p>    
+                <button 
+                    onClick={() => { addCrust(crust); crustPrice(crust) }}
+                    disabled={disableCrust(crust)}>
+                        +
+                </button>
+            </div>
+        )
+    }
 
-    const log = () => console.log(pizza.toppings.pineapple)
+    const log = () => console.log(pizza)
    
+    useEffect(() => {
+        totalPrice() 
+    }, [toppingCost, sizeCost, crustCost])
     
     return (
         <div className="pizza-page">
             <div><p>log</p><button id="log" onClick={log}>+</button></div>
             <div>
                 <strong>size</strong>
-                <div><p>small</p><button onClick={() => addSize("small")}>+</button></div>
-                <div><p>medium</p><button onClick={() => addSize("medium")}>+</button></div>
-                <div><p>large</p><button onClick={() => addSize("large")}>+</button></div>
-                
+                <Size size={"small"} />
+                <Size size={"medium"} />
+                <Size size={"large"} />
+                {sizeCost}
             </div>
             <div>
                 <strong>crust</strong>
-                <div><p>thin</p><button onClick={() => addCrust("thin")}>+</button></div>
-                <div><p>regular</p><button onClick={() => addCrust("regular")}>+</button></div>
-                <div><p>stuffed</p><button onClick={() => addCrust("stuffed")}>+</button></div>
+                <Crust crust={"thin"} />
+                <Crust crust={"regular"} />
+                <Crust crust={"stuffed"} />
+                {crustCost}
             </div>
             <div>
                 <strong>toppings</strong>
                 <Topping topping={"pepperoni"} />
                 <Topping topping={"sausage"} />
-                <Topping topping={"salami"} />
+                <Topping topping={"salami"}/>
                 <Topping topping={"beef"} />
                 <Topping topping={"ham"} />
                 <Topping topping={"spinach"} />
@@ -137,6 +229,7 @@ const PizzaPage = ( {presets} ) => {
                 <Topping topping={"onions"} />
                 <Topping topping={"mushrooms"} />
                 <Topping topping={"greenPeppers"} />
+                {toppingCost}
             </div>
             <div>
                 <strong>${pizza.price}</strong>
