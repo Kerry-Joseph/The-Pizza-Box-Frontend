@@ -18,6 +18,7 @@ const Main = () => {
         }
         
     }
+
     
     const getPresets = async () => {
         try {
@@ -27,6 +28,17 @@ const Main = () => {
         } catch (err) {
             console.log("failed to fetch presets")
         }
+    }
+
+    const createPreset = async (preset) => {
+        await fetch("http://localhost:3001/api/pizzas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify(preset)
+        })
+        getPresets()
     }
 
     useEffect(() => {
@@ -49,7 +61,7 @@ const Main = () => {
                 }/>
                 <Route path="/create-pizza" element={
                     <PizzaPage 
-                        presets={presets}
+                        createPreset={createPreset}
                     />
                 } />
             </Routes>
