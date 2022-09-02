@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react"
 
-const PizzaPage = ( {presets} ) => {
+const PizzaPage = ( {createPreset} ) => {
 
+    // STATES  ----
     const [toppingCost, setToppingCost] = useState(0)
     const [sizeCost, setSizeCost] = useState(0)
     const [crustCost, setCrustCost] = useState(0)
-
     const [pizza, setPizza] = useState({
-        name: {},
+        name: "",
         size: {},
         crust: {},
         toppings: {},
-        price: 0
+        price: 3.99
     })
     
+
+    // TOTAL PRICE ----
     const totalPrice = () => {
         setPizza(prev => {
             return {
@@ -23,6 +25,9 @@ const PizzaPage = ( {presets} ) => {
         })
     }
 
+
+    // SIZE ----
+    // sets selected pizza size to pizza state
     const addSize = (key) => {
         setPizza((prev) => {
             return {
@@ -33,6 +38,7 @@ const PizzaPage = ( {presets} ) => {
         })
     }
 
+    // sets cost of selected pizza size
     const sizePrice = (sizeType) => {
         if(sizeType === "small"){
             setSizeCost(.99)
@@ -43,6 +49,18 @@ const PizzaPage = ( {presets} ) => {
         }
     }
 
+    // highlights selected size
+    const activeSize = (key) => {
+        if(pizza.size[key] === true) {
+            return {color: "red"}
+        } else {
+            return {color: "blue"}
+        }
+    }
+
+
+    // CRUST ----
+    // sets selected pizza crust to pizza state
     const addCrust = (key) => {
         setPizza((prev) => {
             return {
@@ -52,6 +70,8 @@ const PizzaPage = ( {presets} ) => {
         })
         
     }
+
+    // sets cost of selected pizza size
     const crustPrice = (crustType) => {
         if(crustType === "thin"){
             setCrustCost(.25)
@@ -62,19 +82,13 @@ const PizzaPage = ( {presets} ) => {
         }
     }
 
-    
+    // disables button for the selected crust
     const disableCrust = (key) => {
         if(pizza.crust[key] === true)
         return true
     } 
 
-    const activeSize = (key) => {
-        if(pizza.size[key] === true) {
-            return {color: "red"}
-        } else {
-            return {color: "blue"}
-        }
-    }
+    // highlights selected crust
     const activeCrust = (key) => {
         if(pizza.crust[key] === true) {
             return {color: "red"}
@@ -84,6 +98,8 @@ const PizzaPage = ( {presets} ) => {
     }
 
 
+    // TOPPINGS ----
+    // adds selected toppings to pizza state & adds the cost of the topping to topping cost state
     const addToppings = (key) => {
         setPizza((prev) => {
             if (prev.toppings[key] >= 1){
@@ -103,6 +119,8 @@ const PizzaPage = ( {presets} ) => {
             }
         })
     }
+
+    // removes selected toppings from pizza state & adds the cost of the topping to topping cost state
     const subtractToppings = (key) => {
         setPizza(prev => {
             if (prev.toppings[key] >= 1){
@@ -122,6 +140,8 @@ const PizzaPage = ( {presets} ) => {
             }
         })
     }
+
+    // disables remove topping button if there is no topping to remove
     const disableTopping = (key) => {
         if (pizza.toppings[key] === undefined || 0)
         return true
@@ -129,16 +149,21 @@ const PizzaPage = ( {presets} ) => {
         return true
     }
 
+    // highlights selected topping/toppings
     const onOne = (key) => {
         if (pizza.toppings[key] >= 1)
         return {color: "red"}
     }
 
+    // shows amount of topping if it is greater than 1
     const toppingCount = (key) => {
         if (pizza.toppings[key] > 1)
         return pizza.toppings[key]
     }
 
+
+    // COMPONENETS ----
+    // topping component
     const Topping = ({topping}) => {
         return (
             <div>
@@ -153,7 +178,7 @@ const PizzaPage = ( {presets} ) => {
                 </button>
 
                 <button 
-                    onClick={() => subtractToppings(topping)} 
+                    onClick={() => {subtractToppings(topping)}} 
                     disabled={disableTopping(topping)}>
                         -
                 </button>
@@ -162,6 +187,7 @@ const PizzaPage = ( {presets} ) => {
             </div>
         )
     }
+    // size component
     const Size = ({ size }) => {
         return (
             <div>
@@ -176,6 +202,7 @@ const PizzaPage = ( {presets} ) => {
             </div>
         )
     }
+    // crust component
     const Crust = ({ crust }) => {
         return (
             <div>
@@ -192,15 +219,30 @@ const PizzaPage = ( {presets} ) => {
         )
     }
 
-    const log = () => console.log(pizza)
+    // PRESET NAME FORM ----
+    const handleChange = e => {
+        setPizza(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        createPreset(pizza)
+    }
+
+            // const log = () => console.log(pizza)
    
+    // EFFECT ----
     useEffect(() => {
-        totalPrice() 
+        totalPrice()
     }, [toppingCost, sizeCost, crustCost])
-    
+
+
+    // HTML ----
     return (
         <div className="pizza-page">
-            <div><p>log</p><button id="log" onClick={log}>+</button></div>
+            {/* <div><p>log</p><button id="log" onClick={log}>+</button></div> */}
             <div>
                 <strong>size</strong>
                 <Size size={"small"} />
@@ -234,7 +276,13 @@ const PizzaPage = ( {presets} ) => {
             <div>
                 <strong>${pizza.price}</strong>
             </div>
-
+            <div>
+                <button>Set As Preset</button>
+                <form onSubmit={handleSubmit}>
+                    <input name="name" value={pizza.name} type="text" onChange={handleChange} />
+                    <input type="submit" value="Create Pizza Preset" />
+                </form>
+            </div>
         </div>
     )
 }
