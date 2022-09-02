@@ -1,14 +1,24 @@
-import Meal from "./page-components/Meal"
 import { Link } from "react-router-dom"
 import "./page-css/home.scss"
 
 const Home = (props) => {
+
+    const Meal = ({ img, name, content, price, id }) => {
+        return (
+            <div className="meal" id={id} style={{backgroundImage: `url(${img})`}}>
+                <h1 className="meal__name">{name}</h1>
+                <h2 className="meal__content">{content}</h2>
+                <p className="meal__price">${price}</p>
+            </div>
+        )
+    }
 
     const loaded = () => {
         const [meal1, meal2, meal3, meal4] = props.meals
 
         return (
             <div className="home">
+                
                 <Meal 
                     img={meal1.img} 
                     content={meal1.content} 
@@ -17,7 +27,12 @@ const Home = (props) => {
                     key={meal1._id}
                     id={meal1.name.replaceAll(' ', '-')} 
                 />
-                <Link to="/meals" className="home__link--meals"><p>Box Meals</p></Link>
+
+                <Link className="home__link home__link--create-pizza" to="/create-pizza">
+                    <h1>Create Own Pizza</h1>
+                </Link>
+
+                <Link to="/meals" className="home__link home__link--meals"><p>Box Meals</p></Link>
                 <div className="home__meals">
                     <Meal 
                         img={meal2.img} 
