@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./page-css/createPizza.scss"
 
 const PizzaPage = ( {createPreset} ) => {
 
@@ -20,7 +21,7 @@ const PizzaPage = ( {createPreset} ) => {
         setPizza(prev => {
             return {
                 ...prev,
-                price: toppingCost + sizeCost + crustCost
+                price: 3.99 + toppingCost + sizeCost + crustCost
             }
         })
     }
@@ -141,11 +142,15 @@ const PizzaPage = ( {createPreset} ) => {
         })
     }
 
-    // disables remove topping button if there is no topping to remove
-    const disableTopping = (key) => {
-        if (pizza.toppings[key] === undefined || 0)
+    // disables topping button if there is no topping or 10 of the topping
+    const disableSubtract = (key) => {
+        if (pizza.toppings[key] === undefined)
         return true
         if (pizza.toppings[key] === 0)
+        return true
+    }
+    const disableAdd = (key) => {
+        if (pizza.toppings[key] > 9)
         return true
     }
 
@@ -157,8 +162,11 @@ const PizzaPage = ( {createPreset} ) => {
 
     // shows amount of topping if it is greater than 1
     const toppingCount = (key) => {
-        if (pizza.toppings[key] > 1)
-        return pizza.toppings[key]
+        if (pizza.toppings[key] > 1){
+            return pizza.toppings[key]
+        } else {
+            return "+"
+        }
     }
 
 
@@ -166,7 +174,7 @@ const PizzaPage = ( {createPreset} ) => {
     // topping component
     const Topping = ({topping}) => {
         return (
-            <div className={`pizza-page__toppings--${topping}`}>
+            <div className={`pizza-page__list-item pizza-page__list-item--${topping}`}>
                 <p 
                     className="pizza-page__name"
                     style={onOne(topping)}>
@@ -175,27 +183,24 @@ const PizzaPage = ( {createPreset} ) => {
 
                 <button 
                     className="pizza-page__button pizza-page__button--add"
-                    onClick={() => addToppings(topping)}>
-                        + 
+                    onClick={() => addToppings(topping)}
+                    disabled={disableAdd(topping)}>
+                        {toppingCount(topping)} 
                 </button>
 
                 <button 
                     className="pizza-page__button pizza-page__button--subtract"
                     onClick={() => {subtractToppings(topping)}} 
-                    disabled={disableTopping(topping)}>
+                    disabled={disableSubtract(topping)}>
                         -
                 </button>
-                <div 
-                    className="pizza-page__count">
-                    {toppingCount(topping)}
-                </div>
             </div>
         )
     }
     // size component
     const Size = ({ size }) => {
         return (    
-            <div className={`pizza-page__size--${size}`}>
+            <div className={`pizza-page__list-item pizza-page__list-item--${size}`}>
                 <p 
                     className="pizza-page__name"
                     style={activeSize(size)}>
@@ -212,7 +217,7 @@ const PizzaPage = ( {createPreset} ) => {
     // crust component
     const Crust = ({ crust }) => {
         return (
-            <div className={`pizza-page__crust--${crust}`}>
+            <div className={`pizza-page__list-item pizza-page__list-item--${crust}`}>
                 <p 
                     className="pizza-page__name"
                     style={activeCrust(crust)}>
@@ -259,9 +264,11 @@ const PizzaPage = ( {createPreset} ) => {
                 <p className="pizza-page__title pizza-page__title--size">
                     Size
                 </p>
-                <Size size={"small"} />
-                <Size size={"medium"} />
-                <Size size={"large"} />
+                <div className="pizza-page__list pizza-page__list--size">
+                    <Size size={"small"} />
+                    <Size size={"medium"} />
+                    <Size size={"large"} />
+                </div>
                 <p className="pizza-page__cost pizza-page__cost--size">
                     ${sizeCost}
                 </p>
@@ -270,9 +277,11 @@ const PizzaPage = ( {createPreset} ) => {
                 <p className="pizza-page__title pizza-page__title--crust">
                     Crust
                 </p>
-                <Crust crust={"thin"} />
-                <Crust crust={"regular"} />
-                <Crust crust={"stuffed"} />
+                <div className="pizza-page__list pizza-page__list--crust">
+                    <Crust crust={"thin"} />
+                    <Crust crust={"regular"} />
+                    <Crust crust={"stuffed"} />
+                </div>
                 <p className="pizza-page__cost pizza-page__cost--crust">
                     ${crustCost}
                 </p>
@@ -281,18 +290,20 @@ const PizzaPage = ( {createPreset} ) => {
                 <p className="pizza-page__title pizza-page__title--toppings">
                     Toppings
                 </p>
-                <Topping topping={"pepperoni"} />
-                <Topping topping={"sausage"} />
-                <Topping topping={"salami"}/>
-                <Topping topping={"beef"} />
-                <Topping topping={"ham"} />
-                <Topping topping={"spinach"} />
-                <Topping topping={"pineapple"} />
-                <Topping topping={"anchovies"} />
-                <Topping topping={"olives"} />
-                <Topping topping={"onions"} />
-                <Topping topping={"mushrooms"} />
-                <Topping topping={"greenPeppers"} />
+                <div className="pizza-page__list pizza-page__list--toppings">
+                    <Topping topping={"pepperoni"} />
+                    <Topping topping={"sausage"} />
+                    <Topping topping={"salami"}/>
+                    <Topping topping={"beef"} />
+                    <Topping topping={"ham"} />
+                    <Topping topping={"spinach"} />
+                    <Topping topping={"pineapple"} />
+                    <Topping topping={"anchovies"} />
+                    <Topping topping={"olives"} />
+                    <Topping topping={"onions"} />
+                    <Topping topping={"mushrooms"} />
+                    <Topping topping={"greenPeppers"} />
+                </div>
                 <p className="pizza-page__cost pizza-page__cost--toppings">
                     ${toppingCost}
                 </p>
