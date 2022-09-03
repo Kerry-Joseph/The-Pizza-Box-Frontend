@@ -5,6 +5,7 @@ const Nav = () => {
         <nav className="nav">
             <Link className="nav__link nav__link--home" to="/">
                 <img id="box-logo" src="nav/box.png" alt="Pizza Box Logo" />
+                <h1>The Pizza Box</h1>
             </Link>
 
             <Link className="nav__link nav__link--presets" to="/presets">
