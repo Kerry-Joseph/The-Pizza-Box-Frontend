@@ -1,4 +1,5 @@
-const PresetsList = ({ presets }) => {
+
+const PresetsList = ({ presets, filter }) => {
 
     // LOADED ----
     const loaded = () => {
@@ -34,16 +35,17 @@ const PresetsList = ({ presets }) => {
             return firstCaptialLetter + crustWithoutFirstLetter
         }
         
-        
-        return presets.map((preset) => (
-          <div className={`preset-list__list-item preset-list__list-item--${preset.name.replace(' ', '-')}`} key={preset._id}>
-            <div className={`preset-list__list-item-name`}>
+        const filteredPresets = presets.filter(preset => preset.name.includes(filter.text))
+
+        return filteredPresets.map((preset) => (
+          <div className={`presets-list__list-item preset-list__list-item--${preset.name.replace(' ', '-')}`} key={preset._id}>
+            <div className={`list-item-name`}>
                 {preset.name}
             </div>
-            <div className={`preseet-list__list-item-toppings`}>
+            <div className={`list-item-toppings`}>
                 Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)}
             </div>
-            <div className={`preset-list__list-item-price`}>
+            <div className={`list-item-price`}>
                 ${preset.price.toString()}
             </div>
           </div>
