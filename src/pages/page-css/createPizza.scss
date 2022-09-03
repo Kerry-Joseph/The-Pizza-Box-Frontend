@@ -1,0 +1,253 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+
+.pizza-page {
+    // @include border();
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $tablet) {
+        max-width: 1080px;
+    }
+}
+
+.pizza-page__title-cost{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.pizza-page__list {
+    width: 95vw;
+    max-width: 1080px;
+    font-size: 1.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+
+    @media (min-width: $tablet) {
+        font-size: 2rem;
+        gap: 5rem
+    }
+    
+}   
+
+.pizza-page__title {
+    font-size: 2rem;
+    font-weight: 700
+}
+
+.pizza-page__list-item {
+    // @include border();
+    height: 4rem;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: $tablet) {
+        height: 6rem;
+    }
+}
+
+.pizza-page__button {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    background-color: $box-black;
+    color: $box-green;
+
+    @media (min-width: $tablet) {
+        font-size: 2.4rem;
+    }
+}
+
+.pizza-page__cost {
+    font-size: 1.5rem;
+
+    @media (min-width: $tablet) {
+        font-size: 2rem;
+    }
+}
+
+.pizza-page__toppings {
+    .pizza-page__list {
+        grid-template-columns: 1fr 1fr;
+
+        .pizza-page__list-item {
+            position: relative;
+            justify-content: space-between;
+    
+            .pizza-page__button {
+                height: 3.5rem;
+                width: 3.5rem;
+                border-radius: 50px;
+            }
+            .pizza-page__name {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @media (min-width: $tablet) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @media (min-width: $desktop) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            font-size: 2rem;
+            .pizza-page__name {
+                position: absolute;
+                left: 50%;
+                top: -5%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+.pizza-page__total-cost {
+    font-size: 2.3rem;
+    border: #24242379 1px solid;
+    align-self: flex-end;
+    margin: 2rem;
+    padding: .5rem;
+    background-color: $box-black;
+    border-radius: 10px;
+    color: $box-white;
+
+    @media (min-width: $tablet) {
+        padding: 1rem;
+    }
+}
+
+.pizza-page__buttons {
+    height: 4rem;
+    width: 95vw;
+    max-width: 1080px;
+    margin: 1rem;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+
+    .pizza-page__button--set-preset {
+        grid-column: 1 / span 1;
+        font-weight: 600;
+    }
+    .pizza-page__button--add-to-cart {
+        grid-column: 2/ span 3;
+        font-weight: 600;
+    }
+
+    @media (min-width: $tablet) {
+        height: 6rem;
+
+        .pizza-page__button--set-preset {
+            font-size: 2rem;
+        }
+        .pizza-page__button--add-to-cart {
+            font-size: 2rem;
+        }
+    }
+
+}
+
+@mixin modal {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: $box-green solid 1px;
+    background-color: $box-black;
+    color: $box-white;
+    height: 200px;
+    width: 350px;
+    border-radius: 25px;
+
+    button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-weight: 700;
+        font-size: 2rem;
+        background-color: #24242300;
+        color: $box-green;
+        border: #24242300 solid 1px;
+    }
+}
+
+.pizza-page__modal--name-preset {
+    @include modal();
+
+    form {
+        height: 100%;
+        width: 100%;
+        font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .pizza-page__modal-submit {
+            background-color:#6ab5479e;
+            border-radius: 25px;
+            padding: 1rem;
+            font-size: 1.5rem;
+            color: $box-white;
+            &:active {
+                background-color: $box-green;
+                font-weight: 700;
+            }
+        }
+
+        .pizza-page__modal-text {
+            font-size: 2rem;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 30rem;
+            text-align: center;
+            &:focus {
+                background-color: $box-green;
+                color: $box-white;
+                font-weight: 600;
+            }
+        }
+
+        h1{
+            margin: 0
+        }
+    }
+}
+
+.pizza-page__modal--submitted {
+    @include modal()
+}
+
+.pizza-page__modal--requirements {
+    @include modal();
+    text-align: center
+}
+
+
+
