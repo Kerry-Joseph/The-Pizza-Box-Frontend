@@ -27,6 +27,7 @@ body {
   box-sizing: border-box;
   background-color: $box-white;
   color: $box-black;
+  scroll-behavior: smooth;
 }
 
 main {
@@ -67,6 +68,16 @@ main {
 .nav__link--home {
   position: absolute;
   left: 0;
+
+  h1 {
+    display: none;
+  }
+
+  @media (min-width: $tablet) {
+    h1 {
+      display: block;
+    }
+  }
 }
 
 #box-logo {
