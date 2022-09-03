@@ -28,8 +28,8 @@ const PresetsList = ({ presets, filter }) => {
         }
         
         // turns crust of preset into a string
-        const crustString = (crust) => {
-            const string = Object.keys(crust).toString()
+        const crustOrSizeString = (crustOrSize) => {
+            const string = Object.keys(crustOrSize).toString()
             const firstCaptialLetter = string.charAt(0).toUpperCase()
             const crustWithoutFirstLetter = string.toString().slice(1)
             return firstCaptialLetter + crustWithoutFirstLetter
@@ -43,10 +43,10 @@ const PresetsList = ({ presets, filter }) => {
                 <h2>{preset.name}</h2>
             </div>
             <div className={`list-item-size`}>
-                <h3>Size:</h3> {crustString(preset.size)}
+                <h3>Size:</h3> {crustOrSizeString(preset.size)}
             </div>
             <div className={`list-item-crust`}>
-                <h3>Crust:</h3>  {crustString(preset.crust)} 
+                <h3>Crust:</h3>  {crustOrSizeString(preset.crust)} 
             </div>
             <div className={`list-item-toppings`}>
                 <h3>Toppings:</h3>  {toppingsString(preset.toppings)}
