@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import "./page-css/createPizza.scss"
 
 const PizzaPage = ( {createPreset} ) => {
@@ -14,6 +14,12 @@ const PizzaPage = ( {createPreset} ) => {
         toppings: {},
         price: 3.99
     })
+    const [modal, setModal] = useState({
+        namePreset: false,
+        submitted: false,
+        requirements: false
+    })
+    
     
 
     // TOTAL PRICE ----
@@ -25,6 +31,7 @@ const PizzaPage = ( {createPreset} ) => {
             }
         })
     }
+
 
 
     // SIZE ----
@@ -52,13 +59,11 @@ const PizzaPage = ( {createPreset} ) => {
 
     // highlights selected size
     const activeSize = (key) => {
-        if(pizza.size[key] === true) {
-            return {color: "red"}
-        } else {
-            return {color: "blue"}
-        }
+        if(pizza.size[key] === true) 
+        return {color: "#E5E5E5", fontWeight: "700", backgroundColor: "#6AB547" }
     }
 
+    
 
     // CRUST ----
     // sets selected pizza crust to pizza state
@@ -91,12 +96,10 @@ const PizzaPage = ( {createPreset} ) => {
 
     // highlights selected crust
     const activeCrust = (key) => {
-        if(pizza.crust[key] === true) {
-            return {color: "red"}
-        } else {
-            return {color: "blue"}
-        }
+        if(pizza.crust[key] === true) 
+            return {color: "#E5E5E5", fontWeight: "700", backgroundColor: "#6AB547" }
     }
+
 
 
     // TOPPINGS ----
@@ -155,9 +158,9 @@ const PizzaPage = ( {createPreset} ) => {
     }
 
     // highlights selected topping/toppings
-    const onOne = (key) => {
+    const activeTopping = (key) => {
         if (pizza.toppings[key] >= 1)
-        return {color: "red"}
+        return {color: "#6AB547", fontWeight: "700" }
     }
 
     // shows amount of topping if it is greater than 1
@@ -170,6 +173,67 @@ const PizzaPage = ( {createPreset} ) => {
     }
 
 
+
+    // PRESET NAME FORM ----
+    const handleChange = e => {
+        setPizza(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        createPreset(pizza)
+        setModal(prev => ({
+            ...prev, 
+            namePreset: false,
+            submitted: true
+        }))
+    }
+     
+   
+
+    // EFFECT ----
+    useEffect(() => {
+        totalPrice()
+    }, [toppingCost, sizeCost, crustCost])
+
+
+
+    // MODAL ----
+    const showNamePreset = () => {
+        if(modal.namePreset === true) {
+            return {display: "flex"}
+        }
+    }
+    const showSubmitted = () => {
+        if(modal.submitted === true) {
+            return {display: "flex"}
+        }
+    }
+    const showRequirements = () => {
+        if(modal.requirements === true) {
+            return {display: "flex"}
+        }
+    }
+    const requirementCheck = () => {
+        const toppingWith0Vlaue = Object.entries(pizza.toppings).map(topping => topping.includes(0))
+
+        if(Object.entries(pizza.size).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(Object.entries(pizza.crust).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(Object.entries(pizza.toppings).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(toppingWith0Vlaue.includes(true)) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else {
+            setModal(prev => ({...prev, namePreset: true}) )
+        }
+    }
+    
+
+    
     // COMPONENETS ----
     // topping component
     const Topping = ({topping}) => {
@@ -177,8 +241,8 @@ const PizzaPage = ( {createPreset} ) => {
             <div className={`pizza-page__list-item pizza-page__list-item--${topping}`}>
                 <p 
                     className="pizza-page__name"
-                    style={onOne(topping)}>
-                        {topping}
+                    style={activeTopping(topping)}>
+                        {topping.charAt(0).toUpperCase() + topping.toString().slice(1)}
                 </p>
 
                 <button 
@@ -201,15 +265,11 @@ const PizzaPage = ( {createPreset} ) => {
     const Size = ({ size }) => {
         return (    
             <div className={`pizza-page__list-item pizza-page__list-item--${size}`}>
-                <p 
-                    className="pizza-page__name"
-                    style={activeSize(size)}>
-                        {size}
-                </p>    
                 <button
                     className="pizza-page__button" 
-                    onClick={() => {addSize(size); sizePrice(size)}}>
-                        +
+                    onClick={() => {addSize(size); sizePrice(size)}}
+                    style={activeSize(size)}>
+                        {size.charAt(0).toUpperCase() + size.toString().slice(1)}
                 </button>
             </div>
         )
@@ -217,80 +277,69 @@ const PizzaPage = ( {createPreset} ) => {
     // crust component
     const Crust = ({ crust }) => {
         return (
-            <div className={`pizza-page__list-item pizza-page__list-item--${crust}`}>
-                <p 
-                    className="pizza-page__name"
-                    style={activeCrust(crust)}>
-                        {crust}
-                </p>    
+            <div className={`pizza-page__list-item pizza-page__list-item--${crust}`}>  
                 <button 
                     className="pizza-page__button" 
                     onClick={() => { addCrust(crust); crustPrice(crust) }}
-                    disabled={disableCrust(crust)}>
-                        +
+                    disabled={disableCrust(crust)}
+                    style={activeCrust(crust)}>
+                        {crust.charAt(0).toUpperCase() + crust.toString().slice(1)}
                 </button>
             </div>
         )
     }
 
 
-    // PRESET NAME FORM ----
-    const handleChange = e => {
-        setPizza(prev => ({
-            ...prev, [e.target.name]: e.target.value
-        }))
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault()
-        createPreset(pizza)
-    }
-     
-   
-    // EFFECT ----
-    useEffect(() => {
-        totalPrice()
-    }, [toppingCost, sizeCost, crustCost])
-
-
-    // const log = () => console.log(pizza)
-
 
     // HTML ----
     return (
         <div className="pizza-page">
-            {/* <div><p>log</p><button id="log" onClick={log}>+</button></div> */}
+            
+            {/* SIZE */}
             <div className="pizza-page__size">
-                <p className="pizza-page__title pizza-page__title--size">
-                    Size
-                </p>
-                <div className="pizza-page__list pizza-page__list--size">
+                <div className="pizza-page__title-cost">
+                    <p className="pizza-page__title">
+                        SIZE
+                    </p>
+                    <p className="pizza-page__cost">
+                        ${sizeCost}
+                    </p>
+                </div>
+                <div className="pizza-page__list">
                     <Size size={"small"} />
                     <Size size={"medium"} />
                     <Size size={"large"} />
                 </div>
-                <p className="pizza-page__cost pizza-page__cost--size">
-                    ${sizeCost}
-                </p>
             </div>
+
+            {/* CRUST */}
             <div className="pizza-page__crust">
-                <p className="pizza-page__title pizza-page__title--crust">
-                    Crust
-                </p>
-                <div className="pizza-page__list pizza-page__list--crust">
+                <div className="pizza-page__title-cost">
+                    <p className="pizza-page__title">
+                        CRUST
+                    </p>
+                    <p className="pizza-page__cost">
+                        ${crustCost}
+                    </p>    
+                </div>
+                <div className="pizza-page__list">
                     <Crust crust={"thin"} />
                     <Crust crust={"regular"} />
                     <Crust crust={"stuffed"} />
                 </div>
-                <p className="pizza-page__cost pizza-page__cost--crust">
-                    ${crustCost}
-                </p>
             </div>
+
+            {/* TOPPINGS */}
             <div className="pizza-page__toppings">
-                <p className="pizza-page__title pizza-page__title--toppings">
-                    Toppings
-                </p>
-                <div className="pizza-page__list pizza-page__list--toppings">
+                <div className="pizza-page__title-cost">
+                    <p className="pizza-page__title ">
+                        TOPPINGS
+                    </p>
+                    <p className="pizza-page__cost">
+                        ${toppingCost}
+                    </p>
+                </div>
+                <div className="pizza-page__list">
                     <Topping topping={"pepperoni"} />
                     <Topping topping={"sausage"} />
                     <Topping topping={"salami"}/>
@@ -304,19 +353,51 @@ const PizzaPage = ( {createPreset} ) => {
                     <Topping topping={"mushrooms"} />
                     <Topping topping={"greenPeppers"} />
                 </div>
-                <p className="pizza-page__cost pizza-page__cost--toppings">
-                    ${toppingCost}
-                </p>
             </div>
+
+            {/* TOTAL COST */}
             <div className="pizza-page__total-cost">
-                ${pizza.price}
+               Total: ${pizza.price}
             </div>
-            <div className="pizza-page__preset-form">
+
+            {/* PRESET AND ADD TO CART BUTTONS */}
+            <div className="pizza-page__buttons">
+                <button 
+                    onClick={() => requirementCheck()} 
+                    className="pizza-page__button pizza-page__button--set-preset">
+                        Set Preset
+                </button>
+                <button className="pizza-page__button pizza-page__button--add-to-cart">
+                    Add to Cart
+                </button>
+            </div>
+
+            {/* MODALS */}
+            <div className="pizza-page__modal--name-preset" style={showNamePreset()}>
                 <form onSubmit={handleSubmit}>
-                    <input name="name" value={pizza.name} type="text" onChange={handleChange} />
-                    <input type="submit" value="Create Pizza Preset" />
+                    <h1>PRESET NAME</h1>
+                    <input className="pizza-page__modal-text" name="name" value={pizza.name} type="text" onChange={handleChange} />
+                    <input className="pizza-page__modal-submit" type="submit" value="Create Pizza Preset" />
                 </form>
+                <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+                    X
+                </button>
             </div>
+
+            <div className="pizza-page__modal--submitted" style={showSubmitted()}>
+            <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+                X
+            </button>
+                <h1>PRESET CREATED</h1>
+            </div>
+
+            <div className="pizza-page__modal--requirements" style={showRequirements()}>
+            <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+                X
+            </button>
+                <h1>SIZE, CRUST, AND TOPPINGS ARE REQUIRED</h1>
+            </div>
+            
         </div>
     )
 }
