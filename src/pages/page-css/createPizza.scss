@@ -59,6 +59,7 @@ $desktop: 990px; // desktop or larger
 
     display: flex;
     justify-content: center;
+    align-items: center;
 
     @media (min-width: $tablet) {
         height: 6rem;
@@ -96,23 +97,51 @@ $desktop: 990px; // desktop or larger
         grid-template-columns: 1fr 1fr;
 
         .pizza-page__list-item {
+            font-size: 1.5rem;
+            border: $box-black solid 1px;
             position: relative;
             justify-content: space-between;
+            height: 3.5rem;
+            border-radius: 10px;
+            background-color: $box-green;
+            color: $box-black;
     
             .pizza-page__button {
                 height: 3.5rem;
-                width: 3.5rem;
-                border-radius: 50px;
+                width: 1.5em;
+                border-radius: 0 10px 10px 0;
+                border: $box-black;
+
+                @media (min-width: $tablet) {
+                    height: 4rem;
+                    width: 3.5rem;
+                }
+            }
+            .pizza-page__button--add {
+                border-radius: 10px 0 0 10px ;
+            }
+            .pizza-page__button--subtract {
+                border-radius: 0 10px 10px 0;
             }
             .pizza-page__name {
                 position: absolute;
                 left: 50%;
+                top: 5%;
                 transform: translate(-50%, -50%);
+
+                @media (min-width: $tablet) {
+                    top: 0
+                }
             }
         }
 
         @media (min-width: $tablet) {
             grid-template-columns: 1fr 1fr 1fr;
+
+            .pizza-page__list-item {
+                height: 4rem;
+                font-size: 2rem;
+            }
         }
         @media (min-width: $desktop) {
             grid-template-columns: 1fr 1fr 1fr 1fr;
