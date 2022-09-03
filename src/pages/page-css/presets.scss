@@ -1,0 +1,96 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+.presets {
+    width: 100vw;
+    max-width: 1080px;
+    border-left: 1px solid $box-black;
+    border-right: 1px solid $box-black;
+}
+
+.presets-list{
+    scroll-behavior: smooth;
+    overflow: auto;
+    height: 88vh;
+    
+    .list-item {
+        border-bottom: 1px solid $box-black;
+        padding: 4px;
+        font-size: 2rem;
+        
+        h2 {
+            font-size: 2.5rem;
+            transition: .3s;
+        }
+
+        h3 {
+            font-size: 2rem;
+            
+        }
+
+        .list-item-size, .list-item-crust {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 20rem;
+            height: 3rem;
+            
+        }
+
+        .list-item-toppings {
+            // @include border();
+            display: flex;
+            flex-direction: column;
+            
+
+            h3 {
+                // @include border();
+                margin: .1rem
+            }
+        }
+
+        .list-item-price {
+          text-align: right;
+          margin: 1rem;
+          color: $box-green;
+          font-weight: 700;
+        }
+
+        &:hover {
+            h2 {
+                color: $box-green;
+            }
+        }
+    }
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-bottom: $box-black 1px solid;
+    background-color: $box-black;
+    input {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        font-size: 1.5rem;
+        background-color: $box-white;
+
+        &:focus {
+            background-color: $box-green;
+            color: $box-white;
+        }
+    } 
+}
