@@ -160,7 +160,7 @@ const PizzaPage = ( {createPreset} ) => {
     // highlights selected topping/toppings
     const activeTopping = (key) => {
         if (pizza.toppings[key] >= 1)
-        return {color: "#6AB547", fontWeight: "700" }
+        return {color: "#E5E5E5", fontWeight: "700" }
     }
 
     // shows amount of topping if it is greater than 1
