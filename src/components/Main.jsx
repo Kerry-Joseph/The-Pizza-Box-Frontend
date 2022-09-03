@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import Home from "../pages/Home"
 import Presets from "../pages/Presets"
 import PizzaPage from "../pages/CreatePizza"
+import Cart from "../pages/Cart"
 
 const Main = () => {
     const [meals, setMeals] = useState(null)
@@ -63,6 +64,9 @@ const Main = () => {
                     <PizzaPage 
                         createPreset={createPreset}
                     />
+                } />
+                <Route path="/cart" element={
+                    <Cart />
                 } />
             </Routes>
         </main>
