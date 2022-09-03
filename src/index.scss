@@ -26,17 +26,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background-color: $box-white;
+  color: $box-black;
 }
 
-.pizza-page {
-  text-align: center;
+main {
+  display: flex;
+  justify-content: center;
 }
 
 // NAV ------------
 .nav {
   position: relative;
   height: 5rem;
-  background-color: $box-white;
+  background-color: $box-black;
   border-bottom: $box-black 1px solid;
 
   display: flex;
@@ -50,7 +52,7 @@ body {
   height: 4rem;
   margin: 0 5px;
   font-size: 1rem;
-  color: $box-black;
+  color: $box-green;
   text-decoration: none;
 
   display: flex;
