@@ -38,12 +38,18 @@ const PresetsList = ({ presets, filter }) => {
         const filteredPresets = presets.filter(preset => preset.name.includes(filter.text))
 
         return filteredPresets.map((preset) => (
-          <div className={`presets-list__list-item preset-list__list-item--${preset.name.replace(' ', '-')}`} key={preset._id}>
+          <div className={`list-item list-item--${preset.name.replace(' ', '-')}`} key={preset._id}>
             <div className={`list-item-name`}>
-                {preset.name}
+                <h2>{preset.name}</h2>
+            </div>
+            <div className={`list-item-size`}>
+                <h3>Size:</h3> {crustString(preset.size)}
+            </div>
+            <div className={`list-item-crust`}>
+                <h3>Crust:</h3>  {crustString(preset.crust)} 
             </div>
             <div className={`list-item-toppings`}>
-                Size: {crustString(preset.size)} | Crust: {crustString(preset.crust)} | Toppings: {toppingsString(preset.toppings)}
+                <h3>Toppings:</h3>  {toppingsString(preset.toppings)}
             </div>
             <div className={`list-item-price`}>
                 ${preset.price.toString()}
