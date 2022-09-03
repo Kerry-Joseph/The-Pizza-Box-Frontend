@@ -1,7 +1,7 @@
 import { useState } from "react"
 import FilterBar from "./page-components/FilterBar"
 import PresetsList from "./page-components/PresetList"
-
+import "./page-css/presets.scss"
 
 const Presets = ({ presets }) => {
 
