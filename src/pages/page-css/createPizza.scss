@@ -72,6 +72,11 @@ $desktop: 990px; // desktop or larger
     font-size: 1.8rem;
     background-color: $box-black;
     color: $box-green;
+    border: $box-green solid 1px;
+
+    &:active {
+        transform: scale(.95);
+    }
 
     @media (min-width: $tablet) {
         font-size: 2.4rem;
@@ -215,9 +220,11 @@ $desktop: 990px; // desktop or larger
             padding: 1rem;
             font-size: 1.5rem;
             color: $box-white;
+            border: $box-white solid 1px;
             &:active {
                 background-color: $box-green;
                 font-weight: 700;
+                transform: scale(.95);
             }
         }
 
