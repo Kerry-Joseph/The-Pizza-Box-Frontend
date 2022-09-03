@@ -27,40 +27,41 @@ const Home = (props) => {
                     key={meal1._id}
                     id={meal1.name.replaceAll(' ', '-')} 
                 />
+                <div className="home__main">
+                    <Link className="home__link home__link--create-pizza" to="/create-pizza">
+                        <h1>Create Own Pizza</h1>
+                    </Link>
 
-                <Link className="home__link home__link--create-pizza" to="/create-pizza">
-                    <h1>Create Own Pizza</h1>
-                </Link>
-
-                <Link to="/meals" className="home__link home__link--meals"><p>Box Meals</p></Link>
-                <div className="home__meals">
-                    <Meal 
-                        img={meal2.img} 
-                        content={meal2.content} 
-                        price={meal2.price} 
-                        name={meal2.name}
-                        className={meal2.name.replaceAll(' ', '-')}
-                        key={meal2._id}
-                    />
-                    <Meal 
-                        img={meal3.img} 
-                        content={meal3.content} 
-                        price={meal3.price} 
-                        name={meal3.name}
-                        className={meal3.name.replaceAll(' ', '-')}
-                        key={meal3._id}
-                    />
-                    <Meal 
-                        img={meal4.img} 
-                        content={meal4.content} 
-                        price={meal4.price} 
-                        name={meal4.name}
-                        className={meal4.name.replaceAll(' ', '-')}
-                        key={meal4._id}
-                    />
-                </div>
-                <div className="home__rewards">
-                    <h1>Join The Box Club</h1>
+                    <Link to="/meals" className="home__link home__link--meals"><p>Box Meals</p></Link>
+                    <div className="home__meals">
+                        <Meal 
+                            img={meal2.img} 
+                            content={meal2.content} 
+                            price={meal2.price} 
+                            name={meal2.name}
+                            className={meal2.name.replaceAll(' ', '-')}
+                            key={meal2._id}
+                        />
+                        <Meal 
+                            img={meal3.img} 
+                            content={meal3.content} 
+                            price={meal3.price} 
+                            name={meal3.name}
+                            className={meal3.name.replaceAll(' ', '-')}
+                            key={meal3._id}
+                        />
+                        <Meal 
+                            img={meal4.img} 
+                            content={meal4.content} 
+                            price={meal4.price} 
+                            name={meal4.name}
+                            className={meal4.name.replaceAll(' ', '-')}
+                            key={meal4._id}
+                        />
+                    </div>
+                    <div className="home__rewards">
+                        <h1>Join The Box Club</h1>
+                    </div>
                 </div>
             </div>
         )
