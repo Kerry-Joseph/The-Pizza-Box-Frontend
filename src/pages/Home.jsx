@@ -28,6 +28,7 @@ const Home = (props) => {
                     id={meal1.name.replaceAll(' ', '-')} 
                 />
                 <div className="home__main">
+
                     <Link className="home__link home__link--create-pizza" to="/create-pizza">
                         <h1>Create Own Pizza</h1>
                     </Link>
