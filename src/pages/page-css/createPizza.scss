@@ -285,5 +285,34 @@ $desktop: 990px; // desktop or larger
     text-align: center
 }
 
+.pizza-page__modal--add-to-cart {
+    @include modal();
+    text-align: center;
+
+    .yes-no-buttons {
+        position: relative;
+        height: 4rem;
+        width: 15rem;
+        display: flex;
+        justify-content: space-between;
+        // @include border();
+
+        button {
+            // @include border();
+            // position: relative;
+            &:hover {
+                color: $box-white;
+            }
+        }
+        #yes {
+            left: 0;
+            width: 5rem;
+        }
+        #no {
+            right: 0;
+            width: 5rem;
+        }
+    }
+}
 
 
