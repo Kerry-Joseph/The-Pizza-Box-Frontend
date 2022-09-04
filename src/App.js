@@ -6,17 +6,11 @@ import React, { useState } from "react";
 
 function App() {
   
-  const [cookieState, setCookieState] = useState("")
 
   return (
     <div className="App">
-        <Nav 
-          cookieState={cookieState}
-        />
-        <Main 
-          cookieState={cookieState}
-          setCookieState={setCookieState}
-        />
+        <Nav />
+        <Main />
         <Footer />
     </div>
   );

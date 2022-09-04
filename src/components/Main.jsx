@@ -5,7 +5,7 @@ import Presets from "../pages/Presets"
 import PizzaPage from "../pages/CreatePizza"
 import Cart from "../pages/Cart"
 
-const Main = ({ cookieState, setCookieState }) => {
+const Main = () => {
     const [meals, setMeals] = useState(null)
     const [presets, setPresets] = useState(null)
 
@@ -100,8 +100,6 @@ const Main = ({ cookieState, setCookieState }) => {
                             createPreset={createPreset}
                             toppingsString={toppingsString}
                             crustOrSizeString={crustOrSizeString}
-                            cookieState={cookieState}
-                            setCookieState={setCookieState}
                         />
                     } />
                     <Route path="/cart" element={

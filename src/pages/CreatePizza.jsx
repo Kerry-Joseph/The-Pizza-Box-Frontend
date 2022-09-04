@@ -4,7 +4,7 @@ import { SetCookieContext } from ".."
 import { GetCookieContext } from ".."
 
 
-const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieState, setCookieState } ) => {
+const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
 
     // STATES  ----
     const [toppingCost, setToppingCost] = useState(0)
@@ -199,7 +199,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieSta
     // EFFECT ----
     useEffect(() => {
         totalPrice()
-        setCookieState(pizzaString)
+        setCookie(pizzaString)
     }, [toppingCost, sizeCost, crustCost])
 
 
@@ -251,7 +251,6 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieSta
         }
     }
     const showAddToCart = () => {
-        // setCookie("cart" ,cookieState)
         if(modal.addToCart === true){
             return {display: "flex"}
         }
@@ -319,7 +318,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieSta
     const crust = crustOrSizeString(pizza.crust)
     const size = crustOrSizeString(pizza.size)
 
-    const pizzaString = `${pizza.name}|${size}|${crust}|${toppings}|${pizza.price},`
+    const pizzaString = `${pizza.name}|${size}|${crust}|${toppings}|${pizza.price}/`
     
     console.log(getCookie("cart"))
     
@@ -401,7 +400,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieSta
                 </button>
                 <button 
                     className="pizza-page__button pizza-page__button--add-to-cart"
-                    onClick={() => {requirementCartCheck(); setCookie("cart", cookieState)}}
+                    onClick={() => {requirementCartCheck()}}
                     >
                     Add to Cart
                 </button>
