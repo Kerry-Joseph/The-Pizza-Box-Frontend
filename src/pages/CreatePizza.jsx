@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import "./page-css/createPizza.scss"
+import { SetCookieContext } from ".."
+import { GetCookieContext } from ".."
 
-const PizzaPage = ( {createPreset} ) => {
+
+const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString, cookieState, setCookieState } ) => {
 
     // STATES  ----
     const [toppingCost, setToppingCost] = useState(0)
@@ -17,11 +20,11 @@ const PizzaPage = ( {createPreset} ) => {
     const [modal, setModal] = useState({
         namePreset: false,
         submitted: false,
-        requirements: false
+        requirements: false,
+        addToCart: false
     })
     
     
-
     // TOTAL PRICE ----
     const totalPrice = () => {
         setPizza(prev => {
@@ -196,6 +199,7 @@ const PizzaPage = ( {createPreset} ) => {
     // EFFECT ----
     useEffect(() => {
         totalPrice()
+        setCookieState(pizzaString)
     }, [toppingCost, sizeCost, crustCost])
 
 
@@ -231,7 +235,27 @@ const PizzaPage = ( {createPreset} ) => {
             setModal(prev => ({...prev, namePreset: true}) )
         }
     }
-    
+    const requirementCartCheck = () => {
+        const toppingWith0Vlaue = Object.entries(pizza.toppings).map(topping => topping.includes(0))
+
+        if(Object.entries(pizza.size).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(Object.entries(pizza.crust).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(Object.entries(pizza.toppings).length === 0) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else if(toppingWith0Vlaue.includes(true)) {
+            setModal(prev => ({...prev, requirements: true})) 
+        } else {
+            setModal(prev => ({...prev, addToCart: true}) )
+        }
+    }
+    const showAddToCart = () => {
+        // setCookie("cart" ,cookieState)
+        if(modal.addToCart === true){
+            return {display: "flex"}
+        }
+    }
 
     
     // COMPONENETS ----
@@ -289,8 +313,16 @@ const PizzaPage = ( {createPreset} ) => {
         )
     }
 
+    const setCookie = useContext(SetCookieContext)
+    const getCookie = useContext(GetCookieContext)
+    const toppings = toppingsString(pizza.toppings)
+    const crust = crustOrSizeString(pizza.crust)
+    const size = crustOrSizeString(pizza.size)
 
-
+    const pizzaString = `${pizza.name}|${size}|${crust}|${toppings}|${pizza.price},`
+    
+    console.log(getCookie("cart"))
+    
     // HTML ----
     return (
         <div className="pizza-page">
@@ -367,7 +399,10 @@ const PizzaPage = ( {createPreset} ) => {
                     className="pizza-page__button pizza-page__button--set-preset">
                         Set Preset
                 </button>
-                <button className="pizza-page__button pizza-page__button--add-to-cart">
+                <button 
+                    className="pizza-page__button pizza-page__button--add-to-cart"
+                    onClick={() => {requirementCartCheck(); setCookie("cart", cookieState)}}
+                    >
                     Add to Cart
                 </button>
             </div>
@@ -379,23 +414,38 @@ const PizzaPage = ( {createPreset} ) => {
                     <input className="pizza-page__modal-text" name="name" value={pizza.name} type="text" onChange={handleChange} />
                     <input className="pizza-page__modal-submit" type="submit" value="Create Pizza Preset" />
                 </form>
-                <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+                <button onClick={() => setModal(prev => ({namePreset: false, submitted: false, requirements: false, addToCart: false}))}>
                     X
                 </button>
             </div>
 
             <div className="pizza-page__modal--submitted" style={showSubmitted()}>
-            <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+            <button onClick={() => setModal({namePreset: false, submitted: false, requirements: false, addToCart: false})}>
                 X
             </button>
-                <h1>PRESET CREATED</h1>
+            <h1>PRESET CREATED</h1>
             </div>
 
             <div className="pizza-page__modal--requirements" style={showRequirements()}>
-            <button onClick={() => setModal(prev => ({...prev, namePreset: false, submitted: false, requirements: false}))}>
+            <button onClick={() => setModal({namePreset: false, submitted: false, requirements: false, addToCart: false})}>
                 X
             </button>
-                <h1>SIZE, CRUST, AND TOPPINGS ARE REQUIRED</h1>
+            <h1>SIZE, CRUST, AND TOPPINGS ARE REQUIRED</h1>
+            </div>
+
+            <div className="pizza-page__modal--add-to-cart" style={showAddToCart()}>
+            <button onClick={() => setModal({namePreset: false, submitted: false, requirements: false, addToCart: false})}>
+                X
+            </button>
+            <h1>Are you sure?</h1>
+            <div className="yes-no-buttons">
+                <button id="yes">
+                    YES
+                </button>
+                <button id="no" onClick={() => setModal({namePreset: false, submitted: false, requirements: false, addToCart: false})}>
+                    NO
+                </button>
+            </div>
             </div>
             
         </div>
