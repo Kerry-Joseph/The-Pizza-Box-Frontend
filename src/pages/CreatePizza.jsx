@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import "./page-css/createPizza.scss"
 import { SetCookieContext } from ".."
 import { GetCookieContext } from ".."
-
+import { Link } from "react-router-dom"
 
 const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
 
@@ -199,7 +199,6 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
     // EFFECT ----
     useEffect(() => {
         totalPrice()
-        setCookie(pizzaString)
     }, [toppingCost, sizeCost, crustCost])
 
 
@@ -256,6 +255,24 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
         }
     }
 
+
+
+    // COOKIE ----
+    const setCookie = useContext(SetCookieContext)
+    const getCookie = useContext(GetCookieContext)
+    const toppings = toppingsString(pizza.toppings)
+    const crust = crustOrSizeString(pizza.crust)
+    const size = crustOrSizeString(pizza.size)
+    const id = Math.random()
+    const pizzaCookieString = `Personal Pizza|${size}|${crust}|${toppings}|${pizza.price}|${id}/`
+    
+    const cookie = () => {
+        const prev = getCookie("cart")
+        setCookie("cart", `${prev}${pizzaCookieString}`)
+    }
+
+    console.log(getCookie("cart"))
+    
     
     // COMPONENETS ----
     // topping component
@@ -312,15 +329,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
         )
     }
 
-    const setCookie = useContext(SetCookieContext)
-    const getCookie = useContext(GetCookieContext)
-    const toppings = toppingsString(pizza.toppings)
-    const crust = crustOrSizeString(pizza.crust)
-    const size = crustOrSizeString(pizza.size)
 
-    const pizzaString = `${pizza.name}|${size}|${crust}|${toppings}|${pizza.price}/`
-    
-    console.log(getCookie("cart"))
     
     // HTML ----
     return (
@@ -400,8 +409,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
                 </button>
                 <button 
                     className="pizza-page__button pizza-page__button--add-to-cart"
-                    onClick={() => {requirementCartCheck()}}
-                    >
+                    onClick={() => {requirementCartCheck()}}>
                     Add to Cart
                 </button>
             </div>
@@ -438,9 +446,11 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
             </button>
             <h1>Are you sure?</h1>
             <div className="yes-no-buttons">
-                <button id="yes">
-                    YES
-                </button>
+                <Link to="/cart">
+                    <button id="yes" onClick={() => cookie()}>
+                        YES
+                    </button>
+                </Link>
                 <button id="no" onClick={() => setModal({namePreset: false, submitted: false, requirements: false, addToCart: false})}>
                     NO
                 </button>
