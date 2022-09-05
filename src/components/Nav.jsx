@@ -5,6 +5,7 @@ import { GetCookieContext } from ".."
 
 const Nav = () => {
 
+
     const getCookie = useContext(GetCookieContext)
     const cookie = getCookie("cart").split("/")
     
