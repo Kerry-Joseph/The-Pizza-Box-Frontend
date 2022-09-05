@@ -28,9 +28,11 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
     // TOTAL PRICE ----
     const totalPrice = () => {
         setPizza(prev => {
+            const total = 3.99 + toppingCost + sizeCost + crustCost
+            const totalRounded = total.toString().slice(0, 5)
             return {
                 ...prev,
-                price: 3.99 + toppingCost + sizeCost + crustCost
+                price: totalRounded
             }
         })
     }
@@ -269,10 +271,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
     const cookie = () => {
         const prev = getCookie("cart")
         setCookie("cart", `${prev}${pizzaCookieString}`)
-    }
-
-    console.log(getCookie("cart"))
-    
+    }    
     
     // COMPONENETS ----
     // topping component
