@@ -23,8 +23,8 @@ const Main = () => {
         const spacedItem = capital.map(item => item.replace(/([A-Z])/g, " $1")) //adds space before each capital letter 
         const splitItem = spacedItem.map(item => item.split('')) 
         splitItem.forEach(item => {
-            if(item.includes("X" && "1")) {
-                item.splice(-4,4)
+            if(item.includes("x" && "1")) {
+                item.splice(-3,3)
             } else {
                 return
             }
