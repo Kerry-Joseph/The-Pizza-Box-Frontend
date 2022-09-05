@@ -1,6 +1,24 @@
+import { useEffect } from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { GetCookieContext } from ".."
 
 const Nav = () => {
+
+    const getCookie = useContext(GetCookieContext)
+    const cookie = getCookie("cart").split("/")
+    
+    // console.log(cookie.length)
+    const cart = () => {
+        if(cookie.length === 1){
+            return <h1>Cart</h1>
+        } else {
+            return <h1>{cookie.length  - 1}</h1>
+        }
+    }
+
+    useEffect(() => { cart() }, [])
+
     return (
         <nav className="nav">
             <Link className="nav__link nav__link--home" to="/">
@@ -21,7 +39,7 @@ const Nav = () => {
             </Link>
 
             <Link className="nav__link nav__link--cart" to="/cart">
-                <h1>Cart</h1>
+                {cart()}
             </Link>
         </nav> 
     )
