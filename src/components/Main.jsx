@@ -8,6 +8,7 @@ import Cart from "../pages/Cart"
 const Main = () => {
     const [meals, setMeals] = useState(null)
     const [presets, setPresets] = useState(null)
+    const [menu, setMenu] = useState(null)
 
     // turns toppings into string
     const toppingsString = toppings => {
@@ -75,9 +76,20 @@ const Main = () => {
         getPresets()
     }
 
+    const getMenu = async () => {
+        try {
+            const res = await fetch("http://localhost:3001/api/menu-items")
+            const data = await res.json()
+            setMenu(data)
+        } catch (err) {
+            console.log("failed to fetch menu items")
+        }
+    }
+
     useEffect(() => {
         getMeals()
         getPresets()
+        getMenu() 
     }, [])
 
     return (
@@ -103,7 +115,9 @@ const Main = () => {
                         />
                     } />
                     <Route path="/cart" element={
-                        <Cart />
+                        <Cart
+                            menu={menu}
+                        />
                     } />
                 </Routes>
         </main>
