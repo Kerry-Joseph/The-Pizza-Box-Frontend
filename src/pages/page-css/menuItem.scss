@@ -1,0 +1,46 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+@mixin button {
+    background-color: $box-white;
+    border: transparent;
+    color: $box-black;
+}
+
+.menu-item {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: inset 0 5rem 70px $box-black;
+    position: relative;
+    width: 23rem;
+    height: 21rem;
+    border: $box-black 1px solid;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.menu__name {
+    color: $box-white;
+    position: absolute;
+    left: 1.5rem;
+}
+
+.menu__price {
+    position: absolute;
+    color: $box-white;
+    right: 1rem;
+    bottom: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { GetCookieContext } from ".."
 import { SetCookieContext } from ".."
 import "./page-css/cart.scss"
+import "./page-css/menuItem.scss"
+import MenuItem from "./page-components/MenuItem"
 
 const Cart = ({ menu }) => {
 
@@ -48,7 +50,6 @@ const Cart = ({ menu }) => {
 
     const deleteItem = (id) => {
         let filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
-        let i = 0
         for ( let i = 0; i < filtered.length; i++) {
             filtered[i].forEach((at, index) => {
                 const bon = "|" + at
@@ -67,7 +68,7 @@ const Cart = ({ menu }) => {
     const subTotal = () => {
         let tot = 0
         for(let i = 0; i < cookieArr.length; i++) {
-            const cost = Number(cookieArr[i][4], 10)
+            const cost = Number(cookieArr[i][4] ? cookieArr[i][4] : cookieArr[i][2], 10)
             tot += cost
         }
         const stringTot = tot.toString()
@@ -114,6 +115,12 @@ const Cart = ({ menu }) => {
         }
     }
 
+    const newCookie = (item) => {
+        const prev = getCookie("cart")
+        setCookie("cart", `${prev}${item}`)
+        document.location.reload()
+    }  
+
     // COMPONENTS ----
     const CurrentOrder = () => {
         // 0 = name
@@ -130,7 +137,7 @@ const Cart = ({ menu }) => {
                     ?
                 <div className="cart__order-content">
                     <div className="cart__order-content-content">
-                        <h2>Content: </h2><p>{cookie[1].toString()}</p>
+                        <p>{cookie[1].toString()}</p>
                     </div>
                 </div>
                     :
@@ -164,33 +171,56 @@ const Cart = ({ menu }) => {
                 <div className="cart__order-tax"><h1>Tax:</h1><p>${tax()}</p></div>
                 <div className="cart__order-fee" style={showDeliveryFee()}><h1>Delivery Fee:</h1><p>${deliveryCost}</p></div>
                 <div className="cart__order-comp-total"><h1>Total:</h1><p>${total()}</p></div>
-                <button className="cart__order-checkout">Checkout</button>  
-            </div>
-        )
-    }
-
-
-    return (
-        <div className="cart">
-            <div className="cart__delivery-buttons">
-                <button id="pick-up"  onClick={() => setDeliveryState(false)} style={colorPickup()}>
-                    Pick Up
-                </button>
-                <button onClick={() => setDeliveryState(true)} style={colorDelivery()}>
-                    Delivery
-                </button>
-            </div>
-            <div className="cart__order">
-                <CurrentOrder />
+                <button className="cart__order-checkout">Checkout</button>
                 <Link to="/">
                     <button onClick={clearCart} className="cart__clear-cart">
                         CLEAR CART
                     </button>
-                </Link>
+                </Link>  
             </div>
-            <OrderTotal />
+        )
+    }
+
+    const loaded = () => {
+        return (
+            <div className="cart">
+                <div className="cart__delivery-buttons">
+                    <button id="pick-up"  onClick={() => setDeliveryState(false)} style={colorPickup()}>
+                        Pick Up
+                    </button>
+                    <button onClick={() => setDeliveryState(true)} style={colorDelivery()}>
+                        Delivery
+                    </button>
+                </div>
+                <div className="cart__order">
+                    <CurrentOrder />
+                </div>
+                <div className="cart-menu" onClick={() => newCookie(`Wings|Honey BBQ|3.99|${Math.random()}/`)} >
+                    <MenuItem   
+                        key={menu[3]._id}
+                        img={menu[3].img}
+                        name={menu[3].name}
+                        price={menu[3].price}
+                        id={menu[3].name.replaceAll(' ', '-')}
+                    />
+                    <p >Add Wings?</p>
+                </div>
+                
+                <OrderTotal />
+            </div>
+        )
+    }
+
+    const loading = () => {
+        return <h1>loading</h1>
+    }
+
+    return (
+        <div>
+            {menu ? loaded() : loading()}
         </div>
     )
 }
+
 
 export default Cart

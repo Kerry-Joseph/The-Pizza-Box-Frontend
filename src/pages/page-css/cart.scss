@@ -32,8 +32,11 @@ $desktop: 990px; // desktop or larger
     max-width: 1080px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
-    align-content: center;
+    // height: 70vh;
+
+    @media (min-width: $tablet) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 .cart__delivery-buttons {
@@ -53,6 +56,10 @@ $desktop: 990px; // desktop or larger
         border-right: $box-black 1px solid;
         color: $box-green;
     }
+
+    @media (min-width: $tablet) {
+        grid-column: 1 / 4;
+    }
 }
 
 .cart__order {
@@ -62,6 +69,13 @@ $desktop: 990px; // desktop or larger
     grid-column: 1 / span 2;
     h1 {
         margin: 0;
+    }
+
+    @media (min-width: $tablet) {
+        grid-row: 2 / 4;
+        max-height: 55rem;
+        overflow: auto;
+        scroll-behavior: smooth;
     }
 }
 
@@ -74,7 +88,7 @@ $desktop: 990px; // desktop or larger
         padding-right: .2rem;
     }
     p {
-        margin: 0;
+        margin: .5rem 0;
         font-size: 1.2rem;
     }
     div {
@@ -112,13 +126,13 @@ $desktop: 990px; // desktop or larger
 .cart__clear-cart {
     @include button();
     position: absolute;
-    right: 1rem;
-    bottom: 1rem;  
+    top: 1.25rem;
+    right: 1rem;  
     color: maroon;
     &:hover {
         border: maroon 1px solid;
         border-radius: 10px;
-    }  
+    }    
 }
 
 .cart__order-fee {
@@ -130,6 +144,7 @@ $desktop: 990px; // desktop or larger
     grid-row: 3 / 4;
     grid-column: 1 / 3;
     padding: 1rem 2rem;
+    align-self: flex-end;
 
     h1 {
         font-size: 1.5rem;
@@ -138,6 +153,10 @@ $desktop: 990px; // desktop or larger
     p {
         font-size: 1.2rem;
         margin: .5rem 0;
+    }
+
+    @media (min-width: $tablet) {
+        grid-column: 3 / 4;
     }
 }
 
@@ -169,5 +188,19 @@ $desktop: 990px; // desktop or larger
     &:hover {
         border-bottom: 1px solid $box-green;
         border-top: 1px solid $box-green;
+    }
+}
+
+.cart-menu {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        font-size: 1.5rem;
+        font-weight: 700;
     }
 }
