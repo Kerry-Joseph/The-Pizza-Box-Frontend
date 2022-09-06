@@ -1,0 +1,90 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+@mixin button {
+    background-color: $box-white;
+    border: transparent;
+    color: $box-black;
+}
+
+
+
+.menu-item {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: inset 0 5rem 70px $box-black;
+    position: relative;
+    width: 31.5em;
+    height: 29.5rem;
+    border: $box-black 1px solid;
+    border-radius: 10px;
+    margin: 1rem;
+
+    &:hover {
+        h1 {
+            color: $box-green;
+        }
+    }
+
+    @media (min-width: $tablet) {
+        width: 23rem;
+        height: 21rem;
+    }
+}
+
+.menu__name {
+    color: $box-white;
+    position: absolute;
+    left: 1.5rem;
+}
+
+.menu__price {
+    position: absolute;
+    color: $box-white;
+    text-shadow: $box-black 1px 1px;
+    right: 1rem;
+    bottom: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#Cheese-Pizza {
+    background-size: 130% 100%;
+    background-position: 50%;
+}
+
+#Honey-BBQ {
+    background-size: 130% 100%;
+    background-position: 50%;
+}
+#Spicy {
+    background-size: 120% 100%;
+    background-position: 50%;
+}
+#Lemon-Pepper {
+    background-size: 120% 100%;
+    background-position: 30%; 
+}
+#Bread-Stix {
+    background-size: 120% 100%;
+    background-position: 100%; 
+}
+#Cheese-Stix {
+    background-size: 120% 200%;
+    background-position: 50%;  
+}
+#Cinnamon-Stix {
+    background-size: 120% 200%;
+    background-position: 50% 35%;
+}

@@ -1,0 +1,280 @@
+
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+html {
+  font-size: 62.5%; // 10px font size (if html font size is standard(16))
+}
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: $box-white;
+  color: $box-black;
+  scroll-behavior: smooth;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+// NAV ------------
+.nav {
+  position: relative;
+  height: 5rem;
+  background-color: $box-black;
+  border-bottom: $box-black 1px solid;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  // @include border()
+}
+
+.nav__link {
+  height: 4rem;
+  margin: 0 5px;
+  font-size: 1rem;
+  color: $box-green;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  transition: .3s;
+}
+
+.nav__link:hover {
+    border-bottom: $box-green .5rem solid;
+}
+
+.nav__link--home {
+  position: absolute;
+  left: 0;
+
+  h1 {
+    display: none;
+  }
+
+  @media (min-width: $tablet) {
+    h1 {
+      display: block;
+    }
+  }
+}
+
+#box-logo {
+  width: 5rem
+}
+
+@media (min-width: $tablet) {
+  .nav {
+    height: 6rem;
+  }
+  .nav__link {
+    margin: 0 20px;
+    font-size: 1.2rem;
+  }
+  #box-logo {
+    width: 6rem
+  }    
+}
+
+@media (min-width: $desktop) {
+  .nav {
+    height: 7rem;
+  }
+  .nav__link {
+    margin: 0 35px;
+  }
+  #box-logo {
+    width: 7rem
+  }     
+}
+
+
+
+
+// FOOTER -----------
+.footer {
+  background-color: $box-black;
+  color: $box-green;
+}
+
+
+// footer info links
+.footer__info {
+  text-align: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  p {
+    cursor: pointer;
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 520px) {
+  .footer__info {
+    padding: 2rem 0 2rem 0;
+
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+
+// footer socials and mobile app links
+.footer__socials {
+  border-top: $box-white solid 1px;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+
+// social links
+.footer__socials-apps {
+  margin: 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: fit-content(100px) fit-content(100px);
+  gap: 3rem;
+  justify-content: center;
+  align-content: center;
+
+  // @include border() 
+}
+
+@mixin socialSprite($position: 0 0) {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 7px;
+  cursor: pointer;
+
+  background: url(../public/footer/social-icons.png) no-repeat;
+  background-position: $position;
+  background-size: 225% 200%;
+  background-color: $box-green;
+
+  // @include border()
+}
+#facebook {
+  @include socialSprite(
+    $position: -0.5% -1%
+  )
+}
+#twitter {
+  @include socialSprite(
+    $position: 95% 100%
+  )
+}
+#instagram {
+  @include socialSprite(
+    $position: -0.5% 102%
+  )
+}
+#linkedIn {
+  @include socialSprite(
+    $position: 95% -2.5%
+  )
+}
+
+@media (min-width: $tablet) {
+  .footer__socials {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer__socials-apps {
+    display: flex;
+    justify-content: space-around;
+
+    img {
+      margin: 0 15px;
+    }
+  }
+}
+
+
+// store links
+.footer__socials-stores {
+  margin: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  // @include border()
+}
+
+@mixin storeSprite($position: 0 0) {
+  width: 18rem;
+  height: 6.5rem;
+  cursor: pointer;
+
+  background: url(../public/footer/mobile-store-logos.png) no-repeat;
+  background-position: $position;
+  background-size: 100% 200%;
+}
+#app-store {
+  @include storeSprite(
+    $position: 0 100%, 
+  )
+}
+#play-store {
+  @include storeSprite()
+}
+
+@media (min-width: $tablet) {
+  .footer__socials-stores {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    img {
+      margin: 0 40px 0 0;
+    }
+  }
+}
+
+
+// footer copyright info
+.footer__copyright {
+  padding-bottom: 20px;
+}
+
+.footer__copyright-tos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  p {
+    cursor: pointer;
+    margin: 0 1rem 0 1rem;
+  }
+}
+
+.footer__copyright-rights {
+  text-align: center;
+}
+
+
+
+
