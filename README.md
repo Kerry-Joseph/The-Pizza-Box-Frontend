@@ -15,7 +15,7 @@ A Pizza ordering website. A user can create their on pizza and store it in a lis
 
 **[The Pizza Box](https://za-box.herokuapp.com/)**
 ## Unsolved Problems
-- Wanted Cart link in nav to display amount of items in the cart. Couldn't solve how to have it update without relaoding the page.
+- Wanted Cart link in the navigation to display the amount of items in the cart. Couldn't solve how to have it update without reloading the page.
 ## Future Enhancements
 - Cheakout Page
 - Reciept/Tracking Page
