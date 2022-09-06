@@ -1,20 +1,12 @@
 import { Link } from "react-router-dom"
 import "./page-css/home.scss"
+import Meal from "./page-components/Meal"
 
 const Home = (props) => {
 
-    const Meal = ({ img, name, content, price, id }) => {
-        return (
-            <div className="meal" id={id} style={{backgroundImage: `url(${img})`}}>
-                <h1 className="meal__name">{name}</h1>
-                <h2 className="meal__content">{content}</h2>
-                <p className="meal__price">${price}</p>
-            </div>
-        )
-    }
 
     const loaded = () => {
-        const [meal1, meal2, meal3, meal4] = props.meals
+        const [meal1, meal2, meal3, meal4, meal5] = props.meals
 
         return (
             <div className="home">
@@ -40,7 +32,7 @@ const Home = (props) => {
                             content={meal2.content} 
                             price={meal2.price} 
                             name={meal2.name}
-                            className={meal2.name.replaceAll(' ', '-')}
+                            id={meal2.name.replaceAll(' ', '-')}
                             key={meal2._id}
                         />
                         <Meal 
@@ -48,7 +40,7 @@ const Home = (props) => {
                             content={meal3.content} 
                             price={meal3.price} 
                             name={meal3.name}
-                            className={meal3.name.replaceAll(' ', '-')}
+                            id={meal3.name.replaceAll(' ', '-')}
                             key={meal3._id}
                         />
                         <Meal 
@@ -56,7 +48,7 @@ const Home = (props) => {
                             content={meal4.content} 
                             price={meal4.price} 
                             name={meal4.name}
-                            className={meal4.name.replaceAll(' ', '-')}
+                            id={meal4.name.replaceAll(' ', '-')}
                             key={meal4._id}
                         />
                     </div>
