@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import Presets from "../pages/Presets"
 import PizzaPage from "../pages/CreatePizza"
 import Cart from "../pages/Cart"
+import Menu from "../pages/Menu"
 
 const Main = () => {
     const [meals, setMeals] = useState(null)
@@ -116,6 +117,11 @@ const Main = () => {
                     } />
                     <Route path="/cart" element={
                         <Cart
+                            menu={menu}
+                        />
+                    } />
+                    <Route path="/menu" element={
+                        <Menu
                             menu={menu}
                         />
                     } />
