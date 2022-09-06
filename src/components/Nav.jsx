@@ -40,7 +40,7 @@ const Nav = () => {
             </Link>
 
             <Link className="nav__link nav__link--cart" to="/cart">
-                {cart()}
+                <h1>Cart</h1>
             </Link>
         </nav> 
     )
