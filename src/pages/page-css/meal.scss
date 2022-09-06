@@ -31,6 +31,11 @@ $desktop: 990px; // desktop or larger
         font-size: 2rem;
         color: $box-green;
         text-shadow: $box-black 1px 1px;
+        margin-left: 1rem;
+    }
+
+    h1 {
+        margin-left: 2rem;
     }
 
     @media (min-width:$tablet) {

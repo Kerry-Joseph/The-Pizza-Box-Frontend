@@ -80,7 +80,8 @@ $desktop: 990px; // desktop or larger
     @media (min-width: $tablet) {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
+        flex-wrap: wrap;
         
     }
 }

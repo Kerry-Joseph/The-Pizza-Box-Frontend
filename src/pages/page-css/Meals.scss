@@ -1,0 +1,26 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+.meals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.no-bundle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
