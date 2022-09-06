@@ -48,7 +48,7 @@ const Main = () => {
 
     const getMeals = async () => {
         try {
-            const res = await fetch("http://localhost:3001/api/deals")
+            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/deals")
             const data = await res.json()
             setMeals(data)
         } catch (err) {
@@ -59,7 +59,7 @@ const Main = () => {
     
     const getPresets = async () => {
         try {
-            const res = await fetch("http://localhost:3001/api/pizzas")
+            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/pizzas")
             const data = await res.json()
             setPresets(data)
         } catch (err) {
@@ -68,7 +68,7 @@ const Main = () => {
     }
 
     const createPreset = async (preset) => {
-        await fetch("http://localhost:3001/api/pizzas", {
+        await fetch("https://pizza-box-backend.herokuapp.com/api/pizzas", {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -80,7 +80,7 @@ const Main = () => {
 
     const getMenu = async () => {
         try {
-            const res = await fetch("http://localhost:3001/api/menu-items")
+            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/menu-items")
             const data = await res.json()
             setMenu(data)
         } catch (err) {
