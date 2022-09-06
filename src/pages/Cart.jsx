@@ -21,7 +21,6 @@ const Cart = ({ menu }) => {
         setCookie("cart", "")
     }
 
-    // setCookie("cart", ``)
 
     const cookieArray = () => {
         const arr = cookieStr.split("/")
@@ -32,21 +31,6 @@ const Cart = ({ menu }) => {
     const cookieArr = cookieArray()
 
     console.log(cookieStr)
-
-    // const deleteItem = (id) => {
-    //     const filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
-    //     filtered.forEach(cookie => {
-    //             cookie[1] = "|" + cookie[1]
-    //             cookie[2] = "|" + cookie[2]
-    //             cookie[3] = "|" + cookie[3]
-    //             cookie[4] = "|" + cookie[4]
-    //             cookie[5] = "|" + cookie[5] + "/"
-    //     })
-    //     const bro = filtered.map(cookie => cookie.join(""))
-    //     const sis = bro.join("")
-    //     document.location.reload()
-    //     setCookie("cart", sis)
-    // }
 
     const deleteItem = (id) => {
         let filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
