@@ -4,7 +4,7 @@ import { GetCookieContext } from ".."
 import { SetCookieContext } from ".."
 import "./page-css/cart.scss"
 
-const Cart = () => {
+const Cart = ({ menu }) => {
 
     const [deliveryState, setDeliveryState] = useState(false)
 
@@ -13,30 +13,51 @@ const Cart = () => {
     const getCookie = useContext(GetCookieContext)
 
     
-    const cookie = getCookie("cart")
+    const cookieStr = getCookie("cart")
     
     const clearCart = () => {
         setCookie("cart", "")
     }
 
+    // setCookie("cart", ``)
+
     const cookieArray = () => {
-        const arr = cookie.split("/")
+        const arr = cookieStr.split("/")
         arr.splice(-1, 1)
         const arrOfArrays = arr.map(item => item.split("|"))
         return arrOfArrays
     }
     const cookieArr = cookieArray()
 
+    console.log(cookieStr)
+
+    // const deleteItem = (id) => {
+    //     const filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
+    //     filtered.forEach(cookie => {
+    //             cookie[1] = "|" + cookie[1]
+    //             cookie[2] = "|" + cookie[2]
+    //             cookie[3] = "|" + cookie[3]
+    //             cookie[4] = "|" + cookie[4]
+    //             cookie[5] = "|" + cookie[5] + "/"
+    //     })
+    //     const bro = filtered.map(cookie => cookie.join(""))
+    //     const sis = bro.join("")
+    //     document.location.reload()
+    //     setCookie("cart", sis)
+    // }
 
     const deleteItem = (id) => {
-        const filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
-        filtered.forEach(cookie => {
-                cookie[1] = "|" + cookie[1]
-                cookie[2] = "|" + cookie[2]
-                cookie[3] = "|" + cookie[3]
-                cookie[4] = "|" + cookie[4]
-                cookie[5] = "|" + cookie[5] + "/"
-        })
+        let filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
+        let i = 0
+        for ( let i = 0; i < filtered.length; i++) {
+            filtered[i].forEach((at, index) => {
+                const bon = "|" + at
+                filtered[i][index] = bon
+            })
+            filtered[i].push("/")
+            const yo = filtered[i][0].slice(1, filtered[i][0].length)
+            filtered[i][0] = yo
+        }
         const bro = filtered.map(cookie => cookie.join(""))
         const sis = bro.join("")
         document.location.reload()
@@ -102,8 +123,17 @@ const Cart = () => {
         // 4 = price
         // 5 = id
         return cookieArr.map(cookie => (
-            <div className="cart__order-item" key={cookie[5]}>
+            <div className="cart__order-item" key={cookie[5] ? cookie[5] : cookie[3]}>
                 <h1 className="cart__order-name">{cookie[0].toString()}</h1>
+                {
+                    cookie.length < 5
+                    ?
+                <div className="cart__order-content">
+                    <div className="cart__order-content-content">
+                        <h2>Content: </h2><p>{cookie[1].toString()}</p>
+                    </div>
+                </div>
+                    :
                 <div className="cart__order-content">
                     <div className="cart__order-crust">
                         <h2>Crust: </h2><p>{cookie[1].toString()}</p>
@@ -115,12 +145,13 @@ const Cart = () => {
                          <h2>Toppings: </h2><p>{cookie[3].toString()}</p>
                     </div>
                 </div>
+                }
                     
                     <div className="cart__order-price">
-                        <p>${cookie[4].toString()}</p>
+                        <p>${cookie[4] ? cookie[4].toString() : cookie[2]}</p>
                     </div>
                 <div className="cart__order-delete">
-                    <button onClick={() => deleteItem(cookie[5])}>delete</button>
+                    <button onClick={() => deleteItem(cookie[5] ? cookie[5] : cookie[3])}>Delete</button>
                 </div>
             </div>
         ))
@@ -153,7 +184,7 @@ const Cart = () => {
                 <CurrentOrder />
                 <Link to="/">
                     <button onClick={clearCart} className="cart__clear-cart">
-                        clear cart
+                        CLEAR CART
                     </button>
                 </Link>
             </div>
