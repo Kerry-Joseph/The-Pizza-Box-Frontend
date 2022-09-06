@@ -23,11 +23,13 @@ $desktop: 990px; // desktop or larger
     scroll-behavior: smooth;
     overflow: auto;
     height: 88vh;
+    text-decoration: none;
     
     .list-item {
         border-bottom: 1px solid $box-black;
         padding: 4px;
         font-size: 2rem;
+        text-decoration: none;
         
         h2 {
             font-size: 2.5rem;
@@ -93,4 +95,9 @@ $desktop: 990px; // desktop or larger
             color: $box-white;
         }
     } 
+}
+
+.link {
+    text-decoration: none;
+    color: $box-black;
 }
