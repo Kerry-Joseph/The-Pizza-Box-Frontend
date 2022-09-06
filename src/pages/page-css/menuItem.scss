@@ -18,6 +18,8 @@ $desktop: 990px; // desktop or larger
     color: $box-black;
 }
 
+
+
 .menu-item {
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -49,4 +51,8 @@ $desktop: 990px; // desktop or larger
     bottom: 0;
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+#Office-Pizza-Party {
+    display: none;
 }

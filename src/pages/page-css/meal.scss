@@ -1,0 +1,91 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+
+#Daily-Box-Bundle {
+    position: relative;
+    height: 20rem;
+    width: 100vw;
+    margin: 0;
+    box-shadow: inset 0 5rem 7rem black;
+    border-radius: 0%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        position: absolute;
+        bottom: 0;
+        font-size: 2rem;
+        color: $box-green;
+        text-shadow: $box-black 1px 1px;
+    }
+
+    @media (min-width:$tablet) {
+        
+        height: 40rem;
+
+        h1 {
+            font-size: 4rem;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+    }
+    
+}
+
+
+
+
+.meal-link {
+    text-decoration: none;
+}
+
+.meal-price {
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    color: $box-green;
+    
+}
+
+.meal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $box-white;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: inset 0 5rem 70px $box-black;
+    position: relative;
+    width: 23rem;
+    height: 21rem;
+    border: $box-black 1px solid;
+    border-radius: 10px;
+    margin: 1rem;
+
+    h1 {
+        margin: 1rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: 700;
+        padding: 1rem;
+        text-shadow: $box-black 1px 1px;
+    }
+}
+

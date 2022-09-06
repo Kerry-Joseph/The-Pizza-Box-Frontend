@@ -23,52 +23,13 @@ $desktop: 990px; // desktop or larger
 }
 
 .home__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 1080px;
     width: 100vw
 }
 
-#Daily-Box-Bundle {
-    @include mealBackground();
-    position: relative;
-    height: 20rem;
-    width: 100vw;
-    margin: 0;
-    box-shadow: inset 0 0 10rem 5rem black;
-    border-radius: 0%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    h1 {
-        position: relative;
-        margin: 3rem;
-        font-size: 3rem;
-    }
-    h2 {
-        position: absolute;
-        bottom: 0;
-        margin: 3rem;
-    }
-    p {
-        font-size: 3rem;
-        font-weight: 700;
-        color: $box-white;
-        margin: 3rem;
-    }
-}
-@media (min-width: $tablet) {
-    #Daily-Box-Bundle {
-        height: 30rem;
-
-        h1 {
-            font-size: 4rem;
-        }
-        h2 {
-            font-size: 2rem;
-        }
-    }
-}
 
 .home__link {
     text-decoration: none;
@@ -83,6 +44,7 @@ $desktop: 990px; // desktop or larger
 .home__link--create-pizza {
     display: flex;
     justify-content: center;
+    margin: 0;
     h1 {
         background-color: $box-green;
         border-radius: 10PX;
@@ -95,7 +57,17 @@ $desktop: 990px; // desktop or larger
             background-color: $box-black;
             color: $box-white;
         }
+
+        @media (min-width: $tablet) {
+            width: 60rem;
+        }
     }
+}
+
+.home__link--meals {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
 }
 
 .home__meals {
@@ -103,41 +75,13 @@ $desktop: 990px; // desktop or larger
     display: flex;
     flex-direction: column;
     align-items: center;
-    // max-width: 1080px;
+    max-width: 1080px;
     
     @media (min-width: $tablet) {
+        display: flex;
         flex-direction: row;
-        justify-content: space-between
-    }
-}
-
-.meal {
-    @include mealBackground();
-    position: relative;
-    width: 25rem;
-    height: 25rem;
-    margin: 2rem;
-    color: $box-green;
-    border-radius: 10px;
-    box-shadow: inset 0 0 5rem 1.5rem black;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    h1 {
-        position: absolute;
-        margin: 1rem;
-        top: 0
-    }
-    h2 {
-        margin: 1rem;
-        color: $box-white;
-    }
-    p {
-        margin: 1rem;
-        font-size: 1.5rem;
-        font-weight: 600;
+        justify-content: space-between;
+        
     }
 }
 
@@ -160,7 +104,7 @@ $desktop: 990px; // desktop or larger
 @media (min-width: $tablet) {
     .home__rewards {
         width: 70%;
-        margin: 2rem 15%;
+        margin: 2rem 0;
         border-radius: 25px;
     }
 }
