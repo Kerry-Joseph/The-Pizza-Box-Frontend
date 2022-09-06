@@ -25,8 +25,8 @@ $desktop: 990px; // desktop or larger
     background-size: 100% 100%;
     box-shadow: inset 0 5rem 70px $box-black;
     position: relative;
-    width: 23rem;
-    height: 21rem;
+    width: 31.5em;
+    height: 29.5rem;
     border: $box-black 1px solid;
     border-radius: 10px;
     margin: 1rem;
@@ -35,6 +35,11 @@ $desktop: 990px; // desktop or larger
         h1 {
             color: $box-green;
         }
+    }
+
+    @media (min-width: $tablet) {
+        width: 23rem;
+        height: 21rem;
     }
 }
 
@@ -47,12 +52,39 @@ $desktop: 990px; // desktop or larger
 .menu__price {
     position: absolute;
     color: $box-white;
+    text-shadow: $box-black 1px 1px;
     right: 1rem;
     bottom: 0;
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-#Office-Pizza-Party {
-    display: none;
+#Cheese-Pizza {
+    background-size: 130% 100%;
+    background-position: 50%;
+}
+
+#Honey-BBQ {
+    background-size: 130% 100%;
+    background-position: 50%;
+}
+#Spicy {
+    background-size: 120% 100%;
+    background-position: 50%;
+}
+#Lemon-Pepper {
+    background-size: 120% 100%;
+    background-position: 30%; 
+}
+#Bread-Stix {
+    background-size: 120% 100%;
+    background-position: 100%; 
+}
+#Cheese-Stix {
+    background-size: 120% 200%;
+    background-position: 50%;  
+}
+#Cinnamon-Stix {
+    background-size: 120% 200%;
+    background-position: 50% 35%;
 }
