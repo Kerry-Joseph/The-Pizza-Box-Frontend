@@ -46,16 +46,18 @@ $desktop: 990px; // desktop or larger
     justify-content: center;
     margin: 0;
     h1 {
-        background-color: $box-green;
+        background-color: $box-black;
+        color: $box-white;
+        
         border-radius: 10PX;
+
         font-size: 3rem;
         border: solid $box-black 1px;
         width: 30rem;
         height: 4rem;
 
         &:hover {
-            background-color: $box-black;
-            color: $box-white;
+            background-color: $box-green;
         }
 
         @media (min-width: $tablet) {
@@ -65,9 +67,16 @@ $desktop: 990px; // desktop or larger
 }
 
 .home__link--meals {
+    // @include border();
     padding: 0;
     margin: 0;
     font-weight: 500;
+    font-size: .7rem;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .home__meals {
