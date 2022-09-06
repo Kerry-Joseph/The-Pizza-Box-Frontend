@@ -30,7 +30,7 @@ const Home = (props) => {
                 <div className="home__main">
 
                     <Link className="home__link home__link--create-pizza" to="/create-pizza">
-                        <h1>Create Own Pizza</h1>
+                        <h1>Create Pizza</h1>
                     </Link>
 
                     <Link to="/meals" className="home__link home__link--meals"><p>Box Meals</p></Link>
