@@ -74,6 +74,7 @@ $desktop: 990px; // desktop or larger
     @media (min-width: $tablet) {
         grid-row: 2 / 4;
         max-height: 55rem;
+        min-height: 45rem;
         overflow: auto;
         scroll-behavior: smooth;
     }
@@ -192,15 +193,20 @@ $desktop: 990px; // desktop or larger
 }
 
 .cart-menu {
+    display: none;
     grid-column: 3 / 4;
     grid-row: 2 / 3;
     text-align: center;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
     p {
         font-size: 1.5rem;
         font-weight: 700;
+    }
+
+    @media (min-width: $tablet) {
+        display: flex;
     }
 }
