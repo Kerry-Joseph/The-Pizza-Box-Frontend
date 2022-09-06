@@ -179,8 +179,9 @@ const Cart = ({ menu }) => {
                 <div className="cart__order">
                     <CurrentOrder />
                 </div>
-                <div className="cart-menu" onClick={() => newCookie(`Wings|Honey BBQ|3.99|${Math.random()}/`)} >
+                <div className="cart-menu" onClick={() => document.location.reload()}>
                     <MenuItem   
+                        category={menu[3].category}
                         key={menu[3]._id}
                         img={menu[3].img}
                         name={menu[3].name}
