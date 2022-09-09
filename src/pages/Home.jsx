@@ -6,11 +6,10 @@ const Home = (props) => {
 
 
     const loaded = () => {
-        const [meal1, meal2, meal3, meal4, meal5] = props.meals
+        const [meal1, meal2, meal3, meal4] = props.meals
 
         return (
             <div className="home">
-                
                 <Meal 
                     img={meal1.img} 
                     content={meal1.content} 
@@ -19,6 +18,7 @@ const Home = (props) => {
                     key={meal1._id}
                     id={meal1.name.replaceAll(' ', '-')} 
                 />
+
                 <div className="home__main">
 
                     <Link className="home__link home__link--create-pizza" to="/create-pizza">
@@ -52,9 +52,11 @@ const Home = (props) => {
                             key={meal4._id}
                         />
                     </div>
+
                     <div className="home__rewards">
                         <h1>Join The Box Club</h1>
                     </div>
+                    
                 </div>
             </div>
         )

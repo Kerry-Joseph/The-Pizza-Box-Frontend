@@ -8,9 +8,11 @@ import MenuItem from "./page-components/MenuItem"
 
 const Cart = ({ menu }) => {
 
+    // STATE ----
     const [deliveryState, setDeliveryState] = useState(false)
 
-    // CONTEXT
+
+    // CONTEXT ----
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
 
@@ -30,7 +32,6 @@ const Cart = ({ menu }) => {
     }
     const cookieArr = cookieArray()
 
-    console.log(cookieStr)
 
     const deleteItem = (id) => {
         let filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
@@ -49,6 +50,7 @@ const Cart = ({ menu }) => {
         setCookie("cart", sis)
     }
 
+
     const subTotal = () => {
         let tot = 0
         for(let i = 0; i < cookieArr.length; i++) {
@@ -60,6 +62,7 @@ const Cart = ({ menu }) => {
         return totRounded
     }
 
+
     const tax = () => {
         const toNumber = Number(subTotal() ,10)
         const tax = toNumber * .056
@@ -67,7 +70,9 @@ const Cart = ({ menu }) => {
         return taxRounded
     }
     
+
     const deliveryCost = 4.99
+
 
     const total = () => {
         const totalNoDeliveryNumber = Number(subTotal() ,10) + Number(tax() ,10)
@@ -81,6 +86,8 @@ const Cart = ({ menu }) => {
         }
     }
 
+
+    // PICKUP/DELIVERY ----
     const colorDelivery = () => {
         if(deliveryState === true){
             return {color: "#6AB547"}
@@ -99,13 +106,10 @@ const Cart = ({ menu }) => {
         }
     }
 
-    const newCookie = (item) => {
-        const prev = getCookie("cart")
-        setCookie("cart", `${prev}${item}`)
-        document.location.reload()
-    }  
+
 
     // COMPONENTS ----
+    // order
     const CurrentOrder = () => {
         // 0 = name
         // 1 = size
@@ -147,7 +151,7 @@ const Cart = ({ menu }) => {
             </div>
         ))
     }
-
+    // order total
     const OrderTotal = () => {
         return (
             <div className="cart__order-total">      
@@ -165,9 +169,13 @@ const Cart = ({ menu }) => {
         )
     }
 
+
+
+    // LOADED ----
     const loaded = () => {
         return (
             <div className="cart">
+                
                 <div className="cart__delivery-buttons">
                     <button id="pick-up"  onClick={() => setDeliveryState(false)} style={colorPickup()}>
                         Pick Up
@@ -176,9 +184,11 @@ const Cart = ({ menu }) => {
                         Delivery
                     </button>
                 </div>
+
                 <div className="cart__order">
                     <CurrentOrder />
                 </div>
+
                 <div className="cart-menu" onClick={() => document.location.reload()}>
                     <MenuItem   
                         category={menu[3].category}
@@ -192,14 +202,21 @@ const Cart = ({ menu }) => {
                 </div>
                 
                 <OrderTotal />
+
             </div>
         )
     }
 
+
+
+    // LOADING ----
     const loading = () => {
         return <h1>loading</h1>
     }
 
+
+
+    // RETURN ----
     return (
         <div>
             {menu ? loaded() : loading()}

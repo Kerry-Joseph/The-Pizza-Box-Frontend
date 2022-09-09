@@ -1,6 +1,7 @@
 const Footer = () => {
     return (
         <footer className="footer">
+
             <div className="footer__info">
                 <div className="footer__info-company">
                     <h1>Company</h1>
@@ -27,6 +28,7 @@ const Footer = () => {
                     <p>FAQs</p>
                 </div>
             </div>
+
             <div className="footer__socials">
                 <div className="footer__socials-apps">
                     <img id="facebook" src="transparent.png" alt="facebook logo" width="1" height="1" />
@@ -41,6 +43,7 @@ const Footer = () => {
                     <img id="play-store" src="transparent.png" alt="play store logo" width="1" height="1" />
                 </div>
             </div>
+
             <div className="footer__copyright">
                 <div className="footer__copyright-tos">
                     <p>Terms of Service</p>
@@ -55,6 +58,7 @@ const Footer = () => {
                         logos and related marks are trademarks licensed to Pizza Box Enterprises, Inc.</p>
                 </div>
             </div>
+
         </footer>
     )
 }

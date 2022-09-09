@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import { SetCookieContext } from "../.."
 import { GetCookieContext } from "../.."
 const MenuItem = ({ img, name, price, id, category }) => {
+    
+
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
 

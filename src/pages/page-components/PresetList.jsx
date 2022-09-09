@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 
 const PresetsList = ({ presets, filter, toppingsString, crustOrSizeString }) => {
 
+    // CONTEXT ----
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
 
@@ -15,6 +16,8 @@ const PresetsList = ({ presets, filter, toppingsString, crustOrSizeString }) => 
         const prev = getCookie("cart")
         setCookie("cart", `${prev}${item}`)
     }  
+
+
 
     // LOADED ----
     const loaded = () => {
@@ -47,10 +50,14 @@ const PresetsList = ({ presets, filter, toppingsString, crustOrSizeString }) => 
         ))
     }
     
+
+
     // LOADING ----
     const loading = () => {
         return <h1>loading...</h1>
     }
+
+
 
     // HTML ----
     return (

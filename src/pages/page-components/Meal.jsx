@@ -5,6 +5,8 @@ import { SetCookieContext } from "../.."
 import { GetCookieContext } from "../.."
 
 const Meal = ({ img, name, price, id, content }) => {
+
+
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
 
@@ -15,7 +17,6 @@ const Meal = ({ img, name, price, id, content }) => {
     }  
 
     
-
     return (
         <Link to="/cart" className="meal-link">
             <div className="meal" id={id}  onClick={() => newCookie(`${name}|${content}|${price}|${Math.random()}/`)} style={{backgroundImage: `url(${img})`}}>

@@ -260,18 +260,23 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
 
 
     // COOKIE ----
+    // context
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
+    //string
     const toppings = toppingsString(pizza.toppings)
     const crust = crustOrSizeString(pizza.crust)
     const size = crustOrSizeString(pizza.size)
+    
     const id = Math.random()
     const pizzaCookieString = `Personal Pizza|${size}|${crust}|${toppings}|${pizza.price}|${id}/`
     
     const cookie = () => {
         const prev = getCookie("cart")
         setCookie("cart", `${prev}${pizzaCookieString}`)
-    }    
+    } 
+    
+    
     
     // COMPONENETS ----
     // topping component
@@ -330,7 +335,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
 
 
     
-    // HTML ----
+    // RETURN ----
     return (
         <div className="pizza-page">
             

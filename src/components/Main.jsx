@@ -8,10 +8,15 @@ import Menu from "../pages/Menu"
 import Meals from "../pages/Deals"
 
 const Main = () => {
+
+    // STATE ----
     const [meals, setMeals] = useState(null)
     const [presets, setPresets] = useState(null)
     const [menu, setMenu] = useState(null)
 
+
+
+    // STRING FUNCTIONS ----
     // turns toppings into string
     const toppingsString = toppings => {
         const entries = Object.entries(toppings) // turns each topping into its own array
@@ -46,6 +51,7 @@ const Main = () => {
    
     
 
+    // FETCH ----
     const getMeals = async () => {
         try {
             const res = await fetch("https://pizza-box-backend.herokuapp.com/api/deals")
@@ -88,12 +94,18 @@ const Main = () => {
         }
     }
 
+
+
+    // EFFECT ----
     useEffect(() => {
         getMeals()
         getPresets()
         getMenu() 
     }, [])
 
+
+    
+    // HTML ----
     return (
         <main>
                 <Routes>

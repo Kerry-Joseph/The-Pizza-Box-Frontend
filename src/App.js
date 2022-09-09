@@ -1,7 +1,7 @@
 import Nav from "./components/Nav";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import React, { useState } from "react";
+import React from "react";
 
 
 function App() {
