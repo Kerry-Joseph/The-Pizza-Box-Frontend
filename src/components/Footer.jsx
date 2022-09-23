@@ -1,7 +1,10 @@
 const Footer = () => {
+
+    // RETURN ----
     return (
         <footer className="footer">
 
+            {/* company information */}
             <div className="footer__info">
                 <div className="footer__info-company">
                     <h1>Company</h1>
@@ -29,6 +32,7 @@ const Footer = () => {
                 </div>
             </div>
 
+            {/* social media and app stores */}
             <div className="footer__socials">
                 <div className="footer__socials-apps">
                     <img id="facebook" src="transparent.png" alt="facebook logo" width="1" height="1" />
@@ -44,6 +48,7 @@ const Footer = () => {
                 </div>
             </div>
 
+            {/* copyright and tos links */}
             <div className="footer__copyright">
                 <div className="footer__copyright-tos">
                     <p>Terms of Service</p>
@@ -63,4 +68,7 @@ const Footer = () => {
     )
 }
 
+
+
+// EXPORTS ----
 export default Footer

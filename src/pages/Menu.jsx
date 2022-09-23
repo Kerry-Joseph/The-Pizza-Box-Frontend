@@ -1,17 +1,23 @@
+// IMPORTS ----
 import MenuItem from "./page-components/MenuItem"
+
 import "./page-css/Menu.scss"
 
-const Menu = ({ menu }) => {
 
-   
+
+const Menu = ({ menu }) => {
+    // LOADED ----
     const loaded = () => {
+
         const [m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14] = menu
         
         return (
             <div className="menu">
+
                 <button>
                     <p>Create Pizza</p> 
                 </button>
+
                 <div className="menu__pizza">
                     <h1 className="menu__titles">Pizza</h1>
                     <MenuItem
@@ -36,6 +42,7 @@ const Menu = ({ menu }) => {
                         id={m2.name.replaceAll(' ', '-')}
                     />
                 </div>
+
                 <div className="menu__wings">
                     <h1 className="menu__titles">Wings</h1>
                     <MenuItem
@@ -60,6 +67,7 @@ const Menu = ({ menu }) => {
                         id={m5.name.replaceAll(' ', '-')}
                     />
                 </div>
+
                 <div className="menu__bread">
                     <h1 className="menu__titles">Bread</h1>
                     <MenuItem
@@ -84,6 +92,7 @@ const Menu = ({ menu }) => {
                         id={m8.name.replaceAll(' ', '-')}
                     />
                 </div>
+
                 <div className="menu__drinks">
                     <h1 className="menu__titles">Drinks</h1>
                     <MenuItem
@@ -108,6 +117,7 @@ const Menu = ({ menu }) => {
                         id={m11.name.replaceAll(' ', '-')}
                     />
                 </div>
+
                 <div className="menu__dip">
                     <h1 className="menu__titles">Dip</h1>
                     <MenuItem
@@ -132,16 +142,23 @@ const Menu = ({ menu }) => {
                         id={m14.name.replaceAll(' ', '-')}
                     />
                 </div>
+
             </div>
         )
     }
 
+
+
+    // LOADING ----
     const loading = () => {
         return (
             <h1>loading...</h1>
         )
     }
 
+
+
+    // RETURN ----
     return (
         <div>
             {menu ? loaded() : loading()}
@@ -149,4 +166,7 @@ const Menu = ({ menu }) => {
     )
 }
 
+
+
+// EXPORTS ----
 export default Menu

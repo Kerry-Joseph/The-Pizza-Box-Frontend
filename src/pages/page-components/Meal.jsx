@@ -1,15 +1,19 @@
+// IMPORTS ----
 import { useContext } from "react"
 import { Link } from "react-router-dom"
+
 import "../page-css/meal.scss"
+
 import { SetCookieContext } from "../.."
 import { GetCookieContext } from "../.."
 
-const Meal = ({ img, name, price, id, content }) => {
 
+
+const Meal = ({ img, name, price, id, content }) => {
+    // CONTEXT/COOKIE ----
 
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
-
 
     const newCookie = (item) => {
         const prev = getCookie("cart")
@@ -17,6 +21,8 @@ const Meal = ({ img, name, price, id, content }) => {
     }  
 
     
+    
+    // RETURN ----
     return (
         <Link to="/cart" className="meal-link">
             <div className="meal" id={id}  onClick={() => newCookie(`${name}|${content}|${price}|${Math.random()}/`)} style={{backgroundImage: `url(${img})`}}>
@@ -30,4 +36,6 @@ const Meal = ({ img, name, price, id, content }) => {
     )
 }
 
+
+// EXPORTS ----
 export default Meal

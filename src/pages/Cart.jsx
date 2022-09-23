@@ -1,67 +1,89 @@
+// IMPORTS ----
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+
 import { GetCookieContext } from ".."
 import { SetCookieContext } from ".."
+
 import "./page-css/cart.scss"
 import "./page-css/menuItem.scss"
+
 import MenuItem from "./page-components/MenuItem"
 
-const Cart = ({ menu }) => {
 
-    // STATE ----
+
+const Cart = ({ menu }) => {
+    // STATE ----   
+
     const [deliveryState, setDeliveryState] = useState(false)
 
 
-    // CONTEXT ----
+
+    // CONTEXT/COOKIE ----
+
+    // context -
     const setCookie = useContext(SetCookieContext)
     const getCookie = useContext(GetCookieContext)
 
-    
+    // cookie -
     const cookieStr = getCookie("cart")
     
     const clearCart = () => {
         setCookie("cart", "")
     }
 
-
+    // turns the cookie(string) into an array to be manipulated
     const cookieArray = () => {
         const arr = cookieStr.split("/")
         arr.splice(-1, 1)
         const arrOfArrays = arr.map(item => item.split("|"))
         return arrOfArrays
     }
+
+
+
+    // COOKIE ARRAY FOR FOLLOWING FUNCTIONS ----
+
     const cookieArr = cookieArray()
 
 
+
+    // DELETE ITEM ----
+
     const deleteItem = (id) => {
+        // filtered = cookie array without item that is to be deleted
         let filtered = cookieArr.filter(cookie => cookie.includes(id) === false)
+
         for ( let i = 0; i < filtered.length; i++) {
-            filtered[i].forEach((at, index) => {
-                const bon = "|" + at
-                filtered[i][index] = bon
+            filtered[i].forEach((attr, index) => {
+                attr = "|" + attr
+                filtered[i][index] = attr
             })
             filtered[i].push("/")
-            const yo = filtered[i][0].slice(1, filtered[i][0].length)
-            filtered[i][0] = yo
+            const firstBarRemoved = filtered[i][0].slice(1, filtered[i][0].length)
+            filtered[i][0] = firstBarRemoved
         }
-        const bro = filtered.map(cookie => cookie.join(""))
-        const sis = bro.join("")
+
+        const joinedItems = filtered.map(cookie => cookie.join(""))
+        const joinedCookie = joinedItems.join("")
         document.location.reload()
-        setCookie("cart", sis)
+        setCookie("cart", joinedCookie)
     }
 
 
+
+    // CART TOTAL FUNCTIONS ----
+
     const subTotal = () => {
-        let tot = 0
+        let total = 0
         for(let i = 0; i < cookieArr.length; i++) {
             const cost = Number(cookieArr[i][4] ? cookieArr[i][4] : cookieArr[i][2], 10)
-            tot += cost
+            total += cost
         }
-        const stringTot = tot.toString()
+        const stringTot = total.toString()
         const totRounded = stringTot.slice(0, 5)
         return totRounded
     }
-
 
     const tax = () => {
         const toNumber = Number(subTotal() ,10)
@@ -70,9 +92,7 @@ const Cart = ({ menu }) => {
         return taxRounded
     }
     
-
     const deliveryCost = 4.99
-
 
     const total = () => {
         const totalNoDeliveryNumber = Number(subTotal() ,10) + Number(tax() ,10)
@@ -87,7 +107,9 @@ const Cart = ({ menu }) => {
     }
 
 
+
     // PICKUP/DELIVERY ----
+
     const colorDelivery = () => {
         if(deliveryState === true){
             return {color: "#6AB547"}
@@ -109,62 +131,110 @@ const Cart = ({ menu }) => {
 
 
     // COMPONENTS ----
-    // order
-    const CurrentOrder = () => {
-        // 0 = name
-        // 1 = size
-        // 2 = crust
-        // 3 = toppings
-        // 4 = price
-        // 5 = id
-        return cookieArr.map(cookie => (
-            <div className="cart__order-item" key={cookie[5] ? cookie[5] : cookie[3]}>
-                <h1 className="cart__order-name">{cookie[0].toString()}</h1>
-                {
-                    cookie.length < 5
-                    ?
+
+    // order -
+    const notAPizzaItem = (cookie) => {
+        const name = cookie[0]
+        const content = cookie[1]
+        const price = cookie[2]
+        const id = cookie[3]
+
+        return (
+            <div className="cart__order-item" key={id}>
+
+                <h1 className="cart__order-name">{name.toString()}</h1>
+
                 <div className="cart__order-content">
                     <div className="cart__order-content-content">
-                        <p>{cookie[1].toString()}</p>
+                        <p>{content.toString()}</p>
                     </div>
                 </div>
-                    :
-                <div className="cart__order-content">
-                    <div className="cart__order-crust">
-                        <h2>Crust: </h2><p>{cookie[1].toString()}</p>
-                    </div>
-                    <div className="cart__order-size">
-                        <h2>Size: </h2><p>{cookie[2].toString()}</p>
-                    </div>
-                    <div className="cart__order-toppings">
-                         <h2>Toppings: </h2><p>{cookie[3].toString()}</p>
-                    </div>
+
+                <div className="cart__order-price">
+                        <p>${price}</p>
                 </div>
-                }
-                    
-                    <div className="cart__order-price">
-                        <p>${cookie[4] ? cookie[4].toString() : cookie[2]}</p>
-                    </div>
+
                 <div className="cart__order-delete">
-                    <button onClick={() => deleteItem(cookie[5] ? cookie[5] : cookie[3])}>Delete</button>
+                    <button onClick={() => deleteItem(id)}>Delete</button>
                 </div>
+
             </div>
+        )
+    }
+
+    const pizzaItem = (cookie) => {
+        const name = cookie[0]
+        const size = cookie[1]
+        const crust = cookie[2]
+        const toppings = cookie[3]
+        const price = cookie[4]
+        const id = cookie[5]
+        
+        return (
+        <div className="cart__order-item" key={id}>
+
+            <h1 className="cart__order-name">{name.toString()}</h1>
+
+            <div className="cart__order-content">
+                <div className="cart__order-crust">
+                    <h2>Crust: </h2><p>{size.toString()}</p>
+                </div>
+                <div className="cart__order-size">
+                    <h2>Size: </h2><p>{crust.toString()}</p>
+                </div>
+                <div className="cart__order-toppings">
+                    <h2>Toppings: </h2><p>{toppings.toString()}</p>
+                </div>
+            </div> 
+
+            <div className="cart__order-price">
+                <p>${price}</p>
+            </div>
+
+            <div className="cart__order-delete">
+                <button onClick={() => deleteItem(id)}>Delete</button>
+            </div>
+
+        </div>
+        )
+    }
+
+    const CurrentOrder = () => {
+        return cookieArr.map(cookie => (
+            cookie[5] ? pizzaItem(cookie) : notAPizzaItem(cookie)
         ))
     }
-    // order total
+
+
+    // order total -
     const OrderTotal = () => {
         return (
-            <div className="cart__order-total">      
-                <div className="cart__order-sub-total"><h1>Subtotal:</h1><p>${subTotal()}</p></div>
-                <div className="cart__order-tax"><h1>Tax:</h1><p>${tax()}</p></div>
-                <div className="cart__order-fee" style={showDeliveryFee()}><h1>Delivery Fee:</h1><p>${deliveryCost}</p></div>
-                <div className="cart__order-comp-total"><h1>Total:</h1><p>${total()}</p></div>
+            <div className="cart__order-total">    
+
+                <div className="cart__order-sub-total">
+                    <h1>Subtotal:</h1><p>${subTotal()}</p>
+                </div>
+
+                <div className="cart__order-tax">
+                    <h1>Tax:</h1><p>${tax()}</p>
+                </div>
+
+                <div className="cart__order-fee" style={showDeliveryFee()}>
+                    <h1>Delivery Fee:</h1><p>${deliveryCost}</p>
+                </div>
+
+                <div className="cart__order-comp-total">
+                    <h1>Total:</h1><p>${total()}</p>
+                </div>
+
                 <button className="cart__order-checkout">Checkout</button>
+
                 <Link to="/">
                     <button onClick={clearCart} className="cart__clear-cart">
                         CLEAR CART
                     </button>
                 </Link>  
+
             </div>
         )
     }
@@ -211,7 +281,7 @@ const Cart = ({ menu }) => {
 
     // LOADING ----
     const loading = () => {
-        return <h1>loading</h1>
+        return <h1>loading...</h1>
     }
 
 
@@ -225,4 +295,6 @@ const Cart = ({ menu }) => {
 }
 
 
+
+// EXPORTS ----
 export default Cart

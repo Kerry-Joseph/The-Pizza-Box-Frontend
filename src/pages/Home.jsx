@@ -1,11 +1,16 @@
+// IMPORTS ----
 import { Link } from "react-router-dom"
+
 import "./page-css/home.scss"
+
 import Meal from "./page-components/Meal"
 
+
+
 const Home = (props) => {
-
-
+    // LOADED ----
     const loaded = () => {
+
         const [meal1, meal2, meal3, meal4] = props.meals
 
         return (
@@ -62,11 +67,16 @@ const Home = (props) => {
         )
     }
 
+
+
+    // LOADING ----
     const loading = () => {
         return <h1>Loading...</h1>
     }
 
 
+
+    // RETURN ----
     return (
         <div className="home">
             {props.meals ? loaded() : loading()}
@@ -74,4 +84,7 @@ const Home = (props) => {
     )
 }
 
+
+
+// EXPORTS ----
 export default Home

@@ -1,13 +1,16 @@
+// IMPORTS ----
 import Meal from "./page-components/Meal"
 import "./page-css/Meals.scss"
 
 const Meals = ({ meal }) => {
-
-   
+    // LOADED ----
     const loaded = () => {
+        
         const [m0,m1,m2,m3,m4,m5] = meal
+        
         return (
             <div className="meals">
+
                     <div className="bundle">
                         <Meal
                             content={m0.content}
@@ -17,8 +20,8 @@ const Meals = ({ meal }) => {
                             id={m0.name.replaceAll(' ', '-')}
                         />
                     </div>
-                    <div className="no-bundle">
 
+                    <div className="no-bundle">
                         <Meal
                             content={m1.content}
                             img={m1.img} 
@@ -55,16 +58,23 @@ const Meals = ({ meal }) => {
                             id={m5.name.replaceAll(' ', '-')}
                         />
                     </div>
+
             </div>
         )
     }
 
+
+
+    // LOADING ----
     const loading = () => {
         return (
             <h1>loading...</h1>
         )
     }
 
+
+
+    // RETURN ----
     return (
         <div>
             {meal ? loaded() : loading()}
@@ -72,4 +82,7 @@ const Meals = ({ meal }) => {
     )
 }
 
+
+
+// EXPORTS ----
 export default Meals

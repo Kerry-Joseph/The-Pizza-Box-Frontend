@@ -1,5 +1,7 @@
+// IMPORTS ----
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
+
 import Home from "../pages/Home"
 import Presets from "../pages/Presets"
 import PizzaPage from "../pages/CreatePizza"
@@ -7,9 +9,11 @@ import Cart from "../pages/Cart"
 import Menu from "../pages/Menu"
 import Meals from "../pages/Deals"
 
-const Main = () => {
 
+
+const Main = () => {
     // STATE ----
+    
     const [meals, setMeals] = useState(null)
     const [presets, setPresets] = useState(null)
     const [menu, setMenu] = useState(null)
@@ -17,7 +21,8 @@ const Main = () => {
 
 
     // STRING FUNCTIONS ----
-    // turns toppings into string
+
+    // turns toppings into string for cookie 
     const toppingsString = toppings => {
         const entries = Object.entries(toppings) // turns each topping into its own array
         const entriesWithout0 = [] // removes topping with 0 for its value
@@ -41,7 +46,7 @@ const Main = () => {
         return joinItem.toString()
     }
     
-    // turns crust or size into a string
+    // turns crust or size into a string for cookie
     const crustOrSizeString = (crustOrSize) => {
         const string = Object.keys(crustOrSize).toString()
         const firstCaptialLetter = string.charAt(0).toUpperCase()
@@ -52,9 +57,10 @@ const Main = () => {
     
 
     // FETCH ----
+
     const getMeals = async () => {
         try {
-            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/deals")
+            const res = await fetch("http://localhost:3001/api/deals")
             const data = await res.json()
             setMeals(data)
         } catch (err) {
@@ -65,7 +71,7 @@ const Main = () => {
     
     const getPresets = async () => {
         try {
-            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/pizzas")
+            const res = await fetch("http://localhost:3001/api/pizzas")
             const data = await res.json()
             setPresets(data)
         } catch (err) {
@@ -74,7 +80,7 @@ const Main = () => {
     }
 
     const createPreset = async (preset) => {
-        await fetch("https://pizza-box-backend.herokuapp.com/api/pizzas", {
+        await fetch("http://localhost:3001/api/pizzas", {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -86,7 +92,7 @@ const Main = () => {
 
     const getMenu = async () => {
         try {
-            const res = await fetch("https://pizza-box-backend.herokuapp.com/api/menu-items")
+            const res = await fetch("http://localhost:3001/api/menu-items")
             const data = await res.json()
             setMenu(data)
         } catch (err) {
@@ -97,6 +103,7 @@ const Main = () => {
 
 
     // EFFECT ----
+
     useEffect(() => {
         getMeals()
         getPresets()
@@ -105,7 +112,7 @@ const Main = () => {
 
 
     
-    // HTML ----
+    // RETURN ----
     return (
         <main>
                 <Routes>
@@ -148,4 +155,7 @@ const Main = () => {
     )
 }
 
+
+
+// EXPORTS ----
 export default Main
