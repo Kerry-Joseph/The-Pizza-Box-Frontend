@@ -1,5 +1,4 @@
 // IMPORTS ----
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
@@ -11,8 +10,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // COOKIE FUNCTIONS ----
 
-function setCookie(name, value) {
-  document.cookie = name + "=" + value + ";path=/" 
+function setCookie(value) {
+  document.cookie = "cart" + "=" + value + ";path=/" 
 }
 
 const getCookie = (cookieName) => {
@@ -43,7 +42,6 @@ export const GetCookieContext = React.createContext(getCookie)
 
 
 // RENDER ----
- 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

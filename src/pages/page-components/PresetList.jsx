@@ -13,7 +13,7 @@ const PresetsList = ({ presets, filter, toppingsString, crustOrSizeString }) => 
 
     const newCookie = (item) => {
         const prev = getCookie("cart")
-        setCookie("cart", `${prev}${item}`)
+        setCookie(`${prev}${item}`)
     }  
 
     

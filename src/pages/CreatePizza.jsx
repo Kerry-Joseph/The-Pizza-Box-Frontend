@@ -291,7 +291,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
     
     const cookie = () => {
         const prev = getCookie("cart")
-        setCookie("cart", `${prev}${pizzaCookieString}`)
+        setCookie(`${prev}${pizzaCookieString}`)
     } 
     
     

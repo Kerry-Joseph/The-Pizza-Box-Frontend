@@ -29,7 +29,7 @@ const Cart = ({ menu }) => {
     const cookieStr = getCookie("cart")
     
     const clearCart = () => {
-        setCookie("cart", "")
+        setCookie("")
     }
 
     // turns the cookie(string) into an array to be manipulated
@@ -67,7 +67,7 @@ const Cart = ({ menu }) => {
         const joinedItems = filtered.map(cookie => cookie.join(""))
         const joinedCookie = joinedItems.join("")
         document.location.reload()
-        setCookie("cart", joinedCookie)
+        setCookie(joinedCookie)
     }
 
 

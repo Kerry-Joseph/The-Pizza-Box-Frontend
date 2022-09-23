@@ -15,7 +15,7 @@ const MenuItem = ({ img, name, price, id, category }) => {
 
     const newCookie = (item) => {
         const prev = getCookie("cart")
-        setCookie("cart", `${prev}${item}`)
+        setCookie(`${prev}${item}`)
     }  
 
 
