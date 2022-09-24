@@ -1,0 +1,61 @@
+// signature colors
+$box-green: #6AB547;
+$box-black: #242423;
+$box-white: #E5E5E5;
+
+// media sizes
+$tablet: 520px; // tablet or larger
+$desktop: 990px; // desktop or larger
+
+// test border
+@mixin border {
+  border: red solid 1px;
+}
+
+
+
+#Daily-Box-Bundle {
+    position: relative;
+    height: 20rem;
+    width: 100vw;
+    margin: 0;
+    box-shadow: inset 0 5rem 7rem black;
+    border-radius: 0%;
+    background-size: 100% 150%;
+    background-position: 0 50%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    transition: .1s;
+
+        p {
+            position: absolute;
+            bottom: 0;
+            font-size: 2rem;
+            color: $box-green;
+            text-shadow: $box-black 1px 1px;
+            margin-left: 1rem;
+        }
+        h1 {
+            margin-left: 2rem;
+        }
+
+        @media (min-width:$tablet) {
+            
+            height: 40rem;
+
+            h1 {
+                font-size: 4rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        @media (min-width: $desktop) {
+            background-size: 100% 230%;
+            background-position: 0 50%;
+        }
+    
+}

@@ -13,23 +13,24 @@ $desktop: 990px; // desktop or larger
 }
 
 
+
 .pizza-page {
-    // @include border();
-    
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    @media (min-width: $tablet) {
-        max-width: 1080px;
-    }
+        @media (min-width: $tablet) {
+            max-width: 1080px;
+        }
 }
+
 
 .pizza-page__title-cost{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
+
 
 .pizza-page__list {
     width: 95vw;
@@ -40,20 +41,21 @@ $desktop: 990px; // desktop or larger
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 
-    @media (min-width: $tablet) {
-        font-size: 2rem;
-        gap: 5rem
-    }
+        @media (min-width: $tablet) {
+            font-size: 2rem;
+            gap: 5rem
+        }
     
 }   
+
 
 .pizza-page__title {
     font-size: 2rem;
     font-weight: 700
 }
 
+
 .pizza-page__list-item {
-    // @include border();
     height: 4rem;
     font-weight: 500;
 
@@ -61,10 +63,11 @@ $desktop: 990px; // desktop or larger
     justify-content: center;
     align-items: center;
 
-    @media (min-width: $tablet) {
-        height: 6rem;
-    }
+        @media (min-width: $tablet) {
+            height: 6rem;
+        }
 }
+
 
 .pizza-page__button {
     width: 100%;
@@ -75,26 +78,36 @@ $desktop: 990px; // desktop or larger
     color: $box-green;
     border: $box-green solid 1px;
 
-    &:active {
-        transform: scale(.95);
-    }
+        &:active {
+            transform: scale(.95);
+        }
 
-    @media (min-width: $tablet) {
-        font-size: 2.4rem;
-    }
+        @media (min-width: $tablet) {
+            font-size: 2.4rem;
+        }
 }
 
-.pizza-page__cost {
+
+.pizza-page__item-cost {
     font-size: 1.5rem;
 
-    @media (min-width: $tablet) {
-        font-size: 2rem;
-    }
+        @media (min-width: $tablet) {
+            font-size: 2rem;
+        }
 }
+
 
 .pizza-page__toppings {
     .pizza-page__list {
         grid-template-columns: 1fr 1fr;
+
+        @media (min-width: $tablet) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @media (min-width: $desktop) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            font-size: 2rem;
+        }
 
         .pizza-page__list-item {
             font-size: 1.5rem;
@@ -105,56 +118,49 @@ $desktop: 990px; // desktop or larger
             border-radius: 10px;
             background-color: $box-green;
             color: $box-black;
-    
-            .pizza-page__button {
-                height: 3.5rem;
-                width: 1.5em;
-                border-radius: 0 10px 10px 0;
-                border: $box-black;
 
                 @media (min-width: $tablet) {
                     height: 4rem;
-                    width: 3.5rem;
+                    font-size: 2rem;
                 }
-            }
-            .pizza-page__button--add {
-                border-radius: 10px 0 0 10px ;
-            }
-            .pizza-page__button--subtract {
-                border-radius: 0 10px 10px 0;
-            }
-            .pizza-page__name {
-                position: absolute;
-                left: 50%;
-                top: 5%;
-                transform: translate(-50%, -50%);
 
-                @media (min-width: $tablet) {
-                    top: 0
+                .pizza-page__button {
+                    height: 3.5rem;
+                    width: 1.5em;
+                    border-radius: 0 10px 10px 0;
+                    border: $box-black;
+
+                        @media (min-width: $tablet) {
+                            height: 4rem;
+                            width: 3.5rem;
+                        }
                 }
-            }
-        }
+                .pizza-page__button--add {
+                    border-radius: 10px 0 0 10px ;
+                }
+                .pizza-page__button--subtract {
+                    border-radius: 0 10px 10px 0;
+                }
+                .pizza-page__name {
+                    position: absolute;
+                    left: 50%;
+                    top: 5%;
+                    transform: translate(-50%, -50%);
 
-        @media (min-width: $tablet) {
-            grid-template-columns: 1fr 1fr 1fr;
-
-            .pizza-page__list-item {
-                height: 4rem;
-                font-size: 2rem;
-            }
-        }
-        @media (min-width: $desktop) {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            font-size: 2rem;
-            .pizza-page__name {
-                position: absolute;
-                left: 50%;
-                top: -5%;
-                transform: translate(-50%, -50%);
-            }
-        }
+                        @media (min-width: $tablet) {
+                            top: 0
+                        }
+                        @media (min-width: $desktop) {
+                            position: absolute;
+                            left: 50%;
+                            top: -5%;
+                            transform: translate(-50%, -50%);
+                        }
+                }
+        }            
     }
 }
+
 
 .pizza-page__total-cost {
     font-size: 2.3rem;
@@ -166,10 +172,11 @@ $desktop: 990px; // desktop or larger
     border-radius: 10px;
     color: $box-white;
 
-    @media (min-width: $tablet) {
-        padding: 1rem;
-    }
+        @media (min-width: $tablet) {
+            padding: 1rem;
+        }
 }
+
 
 .pizza-page__buttons {
     height: 4rem;
@@ -181,28 +188,30 @@ $desktop: 990px; // desktop or larger
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 
-    .pizza-page__button--set-preset {
-        grid-column: 1 / span 1;
-        font-weight: 600;
-    }
-    .pizza-page__button--add-to-cart {
-        grid-column: 2/ span 3;
-        font-weight: 600;
-    }
-
-    @media (min-width: $tablet) {
-        height: 6rem;
-
         .pizza-page__button--set-preset {
-            font-size: 2rem;
+            grid-column: 1 / span 1;
+            font-weight: 600;
         }
         .pizza-page__button--add-to-cart {
-            font-size: 2rem;
+            grid-column: 2/ span 3;
+            font-weight: 600;
         }
-    }
+
+        @media (min-width: $tablet) {
+            height: 6rem;
+
+            .pizza-page__button--set-preset {
+                font-size: 2rem;
+            }
+            .pizza-page__button--add-to-cart {
+                font-size: 2rem;
+            }
+        }
 
 }
 
+
+// MODALS ----
 @mixin modal {
     display: none;
     position: fixed;
@@ -219,21 +228,21 @@ $desktop: 990px; // desktop or larger
     width: 350px;
     border-radius: 25px;
 
-    button {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        font-weight: 700;
-        font-size: 2rem;
-        background-color: #24242300;
-        color: $box-green;
-        border: #24242300 solid 1px;
-    }
+        button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-weight: 700;
+            font-size: 2rem;
+            background-color: #24242300;
+            color: $box-green;
+            border: #24242300 solid 1px;
+        }
 }
+
 
 .pizza-page__modal--name-preset {
     @include modal();
-
     form {
         height: 100%;
         width: 100%;
@@ -243,76 +252,79 @@ $desktop: 990px; // desktop or larger
         justify-content: space-evenly;
         align-items: center;
 
-        .pizza-page__modal-submit {
-            background-color:#6ab5479e;
-            border-radius: 25px;
-            padding: 1rem;
-            font-size: 1.5rem;
-            color: $box-white;
-            border: $box-white solid 1px;
-            &:active {
-                background-color: $box-green;
-                font-weight: 700;
-                transform: scale(.95);
-            }
-        }
-
-        .pizza-page__modal-text {
-            font-size: 2rem;
-            padding: 1rem;
-            border-radius: 10px;
-            width: 30rem;
-            text-align: center;
-            &:focus {
-                background-color: $box-green;
+            .pizza-page__modal-submit {
+                background-color:#6ab5479e;
+                border-radius: 25px;
+                padding: 1rem;
+                font-size: 1.5rem;
                 color: $box-white;
-                font-weight: 600;
+                border: $box-white solid 1px;
+                
+                    &:active {
+                        background-color: $box-green;
+                        font-weight: 700;
+                        transform: scale(.95);
+                    }
             }
-        }
+            .pizza-page__modal-text {
+                font-size: 2rem;
+                padding: 1rem;
+                border-radius: 10px;
+                width: 30rem;
+                text-align: center;
 
-        h1{
-            margin: 0
-        }
+                    &:focus {
+                        background-color: $box-green;
+                        color: $box-white;
+                        font-weight: 600;
+                    }
+            }
+
+            h1{
+                margin: 0
+            }
     }
 }
+
 
 .pizza-page__modal--submitted {
     @include modal()
 }
+
 
 .pizza-page__modal--requirements {
     @include modal();
     text-align: center
 }
 
+
 .pizza-page__modal--add-to-cart {
     @include modal();
     text-align: center;
 
-    .yes-no-buttons {
-        position: relative;
-        height: 4rem;
-        width: 15rem;
-        display: flex;
-        justify-content: space-between;
-        // @include border();
+        .yes-no-buttons {
+            position: relative;
+            height: 4rem;
+            width: 15rem;
+            display: flex;
+            justify-content: space-between;
 
-        button {
-            // @include border();
-            // position: relative;
-            &:hover {
-                color: $box-white;
-            }
+                button {
+                    // @include border();
+                    // position: relative;
+                    &:hover {
+                        color: $box-white;
+                    }
+                }
+                #yes {
+                    left: 0;
+                    width: 5rem;
+                }
+                #no {
+                    right: 0;
+                    width: 5rem;
+                }
         }
-        #yes {
-            left: 0;
-            width: 5rem;
-        }
-        #no {
-            right: 0;
-            width: 5rem;
-        }
-    }
 }
 
 

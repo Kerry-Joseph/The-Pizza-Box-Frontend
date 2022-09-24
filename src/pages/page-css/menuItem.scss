@@ -31,23 +31,25 @@ $desktop: 990px; // desktop or larger
     border-radius: 10px;
     margin: 1rem;
 
-    &:hover {
-        h1 {
-            color: $box-green;
+        &:hover {
+            h1 {
+                color: $box-green;
+            }
         }
-    }
 
-    @media (min-width: $tablet) {
-        width: 23rem;
-        height: 21rem;
-    }
+        @media (min-width: $tablet) {
+            width: 23rem;
+            height: 21rem;
+        }
 }
+
 
 .menu__name {
     color: $box-white;
     position: absolute;
     left: 1.5rem;
 }
+
 
 .menu__price {
     position: absolute;
@@ -59,11 +61,12 @@ $desktop: 990px; // desktop or larger
     font-weight: 700;
 }
 
+
+// menu item background adjustments
 #Cheese-Pizza {
     background-size: 130% 100%;
     background-position: 50%;
 }
-
 #Honey-BBQ {
     background-size: 130% 100%;
     background-position: 50%;

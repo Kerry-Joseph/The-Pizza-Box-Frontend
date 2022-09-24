@@ -16,16 +16,23 @@ $desktop: 990px; // desktop or larger
     background-repeat: no-repeat;
     background-size: $size; 
 }
+
+
+
+// daily box bundle in boxBundle.scss
+
 .home {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
 .home__main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     max-width: 1080px;
     width: 100vw
 }
@@ -36,12 +43,14 @@ $desktop: 990px; // desktop or larger
     font-weight: 700;
     color: $box-black;
     text-align: center;
+
     p {
         font-size: 4em;
     }
 }
 
-.home__link--create-pizza {
+
+.home__pizza-link {
     display: flex;
     justify-content: center;
     margin: 0;
@@ -66,8 +75,8 @@ $desktop: 990px; // desktop or larger
     }
 }
 
-.home__link--meals {
-    // @include border();
+
+.home__meals-link {
     padding: 0;
     margin: 0;
     font-weight: 500;
@@ -79,8 +88,8 @@ $desktop: 990px; // desktop or larger
     }
 }
 
+
 .home__meals {
-    // @include border();
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,28 +105,27 @@ $desktop: 990px; // desktop or larger
 }
 
 
-
 .home__rewards {
     width: 100vw;
     max-width: 1080px;
     position: relative;
     height: 20rem;
     background-color: $box-green;
-    // @include border();
-    h1 {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -120%);
-    }
+
+        h1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -120%);
+        }
+
+        @media (min-width: $tablet) {
+            width: 70%;
+            margin: 2rem 0;
+            border-radius: 25px;
+        }
 }
-@media (min-width: $tablet) {
-    .home__rewards {
-        width: 70%;
-        margin: 2rem 0;
-        border-radius: 25px;
-    }
-}
+
 
 
 
