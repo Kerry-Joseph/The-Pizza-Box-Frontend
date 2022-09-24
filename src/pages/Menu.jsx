@@ -1,4 +1,6 @@
 // IMPORTS ----
+import { Link } from "react-router-dom"
+
 import MenuItem from "./page-components/MenuItem"
 
 import "./page-css/Menu.scss"
@@ -15,7 +17,9 @@ const Menu = ({ menu }) => {
             <div className="menu">
 
                 <button>
-                    <p>Create Pizza</p> 
+                    <Link id="link" to="/create-pizza">
+                        <p>Create Pizza</p> 
+                    </Link>
                 </button>
 
                 <div className="menu__pizza">
