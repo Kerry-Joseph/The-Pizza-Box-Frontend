@@ -26,11 +26,11 @@ const Home = (props) => {
 
                 <div className="home__main">
 
-                    <Link className="home__link home__link--create-pizza" to="/create-pizza">
+                    <Link className="home__link home__pizza-link" to="/create-pizza">
                         <h1>Create Pizza</h1>
                     </Link>
 
-                    <Link to="/meals" className="home__link home__link--meals"><p>Box Meals</p></Link>
+                    <Link to="/meals" className="home__link home__meals-link"><p>Box Meals</p></Link>
                     <div className="home__meals">
                         <Meal 
                             img={meal2.img} 

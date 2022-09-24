@@ -372,7 +372,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
                     <p className="pizza-page__title">
                         SIZE
                     </p>
-                    <p className="pizza-page__cost">
+                    <p className="pizza-page__item-cost">
                         ${sizeCost}
                     </p>
                 </div>
@@ -390,7 +390,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
                     <p className="pizza-page__title">
                         CRUST
                     </p>
-                    <p className="pizza-page__cost">
+                    <p className="pizza-page__item-cost">
                         ${crustCost}
                     </p>    
                 </div>
@@ -408,7 +408,7 @@ const PizzaPage = ( { createPreset, toppingsString, crustOrSizeString } ) => {
                     <p className="pizza-page__title ">
                         TOPPINGS
                     </p>
-                    <p className="pizza-page__cost">
+                    <p className="pizza-page__item-cost">
                         ${toppingCost}
                     </p>
                 </div>

@@ -4,14 +4,13 @@ import { Link } from "react-router-dom"
 
 
 const Nav = () => {
-
     // RETURN ----
     return (
         <nav className="nav">
 
             // home
             <Link className="nav__link nav__link--home" to="/">
-                <img id="box-logo" src="nav/box.png" alt="Pizza Box Logo" />
+                <img src="nav/box.png" alt="Pizza Box Logo" />
                 <h1>The Pizza Box</h1>
             </Link>
 

@@ -150,7 +150,7 @@ const Cart = ({ menu }) => {
                     </div>
                 </div>
 
-                <div className="cart__order-price">
+                <div className="cart__order-item-price">
                         <p>${price}</p>
                 </div>
 
@@ -187,7 +187,7 @@ const Cart = ({ menu }) => {
                 </div>
             </div> 
 
-            <div className="cart__order-price">
+            <div className="cart__order-item-price">
                 <p>${price}</p>
             </div>
 
@@ -209,7 +209,7 @@ const Cart = ({ menu }) => {
     // order total -
     const OrderTotal = () => {
         return (
-            <div className="cart__order-total">    
+            <div className="cart__order-total-box">    
 
                 <div className="cart__order-sub-total">
                     <h1>Subtotal:</h1><p>${subTotal()}</p>
@@ -223,7 +223,7 @@ const Cart = ({ menu }) => {
                     <h1>Delivery Fee:</h1><p>${deliveryCost}</p>
                 </div>
 
-                <div className="cart__order-comp-total">
+                <div className="cart__order-total">
                     <h1>Total:</h1><p>${total()}</p>
                 </div>
 
@@ -259,7 +259,7 @@ const Cart = ({ menu }) => {
                     <CurrentOrder />
                 </div>
 
-                <div className="cart-menu" onClick={() => document.location.reload()}>
+                <div className="cart__wings" onClick={() => document.location.reload()}>
                     <MenuItem   
                         category={menu[3].category}
                         key={menu[3]._id}

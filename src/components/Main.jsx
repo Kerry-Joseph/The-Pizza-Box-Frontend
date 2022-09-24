@@ -7,7 +7,7 @@ import Presets from "../pages/Presets"
 import PizzaPage from "../pages/CreatePizza"
 import Cart from "../pages/Cart"
 import Menu from "../pages/Menu"
-import Meals from "../pages/Deals"
+import Meals from "../pages/Meals"
 
 
 
